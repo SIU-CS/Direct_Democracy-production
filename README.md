@@ -3,3 +3,6 @@ An application that will allow users to vote on the actions taken by the preside
 
 Gregory Brinkman
 gregorylucasbrinkman@siu.edu
+
+Ourania Spantidi
+ourania.spantidi@siu.edu
