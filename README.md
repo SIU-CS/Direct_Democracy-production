@@ -6,3 +6,6 @@ gregorylucasbrinkman@siu.edu
 
 Ourania Spantidi
 ourania.spantidi@siu.edu
+
+DeMarco J. Ewings
+demarco.ewings@siu.edu
