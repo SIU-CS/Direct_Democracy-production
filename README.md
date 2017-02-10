@@ -9,3 +9,6 @@ ourania.spantidi@siu.edu
 
 DeMarco J. Ewings
 demarco.ewings@siu.edu
+
+Chase Melvin
+chase.melvin@siu.edu
