@@ -1,0 +1,40 @@
+Security
+As a user, I want my account to be secure, so I am the only one who can use it.
+1. The application will use secure connections to the login servers.
+2. Login information stored on the server will be hashed.
+Story Source: SRS - NR2
+Estimate: 
+Risk: 
+Value: High
+Priority: C
+
+Well Designed
+As a user, I want the application to be well designed, so that it is easily usable and necessary information is readily available to the user.
+1. Notifications (notifications on mobile devices, emails, etc.) will alert the user of new things to vote on.
+2. Simple design, very little numbers (mainly use graphs for showing results) and only necessary text on each page.
+Story Source: SRS - NR3
+Estimate: 
+Risk: 
+Value: Medium
+Priority: S
+
+Objectivity
+As a user, I want votes to be objective, so results have more meaning.
+1. Present the user with an unbiased summary of the item to be voted on.
+2. Give the user links to news articles from various sources, preferrably multiple from across the political spectrum.
+3. Keep the results of a vote hidden from the user until the user has voted.
+Story Source: SRS - NR4
+Estimate: 
+Risk: 
+Value: Low
+Priority: S
+
+Privacy
+As a user, I want privacy, so my votes will not be shown to anyone else.
+1. Users will be able to see how they voted on an item.
+2. Users will be able to see the total vote results on an item, but not how any other specific user has voted.
+Story Source: SRS - NR5
+Estimate: 
+Risk: 
+Value: Medium
+Priority: C
