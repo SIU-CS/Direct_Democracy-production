@@ -1,0 +1,52 @@
+
+Voting Visualization
+As a user, I want to see the approve/disapprove ratio, so I can clearly tell public opinion on a vote.
+Acceptance criteria:
+1. After a successful vote, the vote buttons should disappear and be replaced with the visualization of past votes.
+2. The visualization should not be available to the user until a successful vote by that specific user.
+3. The visualization should be manifested as a pie chart that is split on the like/dislike ratio of the topic the user just voted on.
+Story source:  SRS – FR4
+Estimate:  9 man-hours
+Risk: Small
+ Value: High
+Priority: M
+
+
+Non-user View
+As a non-user, I want information to be displayed when I visit the website, so I can gain knowledge on a voting topic without an account.
+Acceptance criteria:
+1. In lieu of the voting page, Users should see all the information associated with the given vote topic, but with the ratio of likes to dislikes instead of voting buttons.
+2. Non-users should be given an option to register for an account in the navigation header.
+3. The first page a non-user should see is a splash page, where they can select specific voting topics to view information and public opinions on them.
+Story source:  SRS – FR5
+Estimate:  20 man-hours
+Risk: Medium
+ Value: Medium
+Priority:  S
+
+Account Management
+As a user, I want to be able to change the information on my account, so I can fix old mistakes during registration or update my information.
+Acceptance criteria:
+1. The account management page should be accessible from the navigation bar.
+2. The account management page should allow for email and password to be updated.
+3. Upon an update on the information, a confirmation should be sent to the user on the same webpage, making the update as clear as possible.
+Story source:  SRS – FR6
+Estimate:  6 man-hours
+Risk: High
+ Value: Medium
+Priority: S
+
+
+Navigation Bar
+As a user, I want every page of the app to be accessible from anywhere in the app, so I can navigate the application quickly. 
+Acceptance criteria:
+1. The navigation bar should include every main page for the app, including Account information, Past votes by the user, and the voting pages.
+2. To non-users, Account specific functionality should either be hidden or replaced with a registration link. 
+3. The navigation bar should be hidden on the mobile version of this application, but still accessible. 
+4. Navigation bar should be accessible at any time for a user.
+Story source:  SRS – FR7
+Estimate:  10 man-hours
+Risk: Small
+ Value: Small
+Priority: S
+
