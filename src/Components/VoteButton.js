@@ -1,24 +1,76 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class VoteButton extends Component {
-render() {
-var type = this.props.type;
-if(type){
-  return (
-      <button onClick={this.clicked} >true</button>
-  );
-}else{
-  return (
-      <button onClick={this.clicked} >false</button>
-  );
+class VoteButton extends React.Component {
+      //send data
 
-}
+    /*
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    */
 
-}
 
-    clicked(){
-        console.log("Button Click!");
+
+
+    constructor(props){
+        super(props);
+        this.state = {
+               label   : this.props.label,
+               clicked : this.props.clicked,
+               vote    : this.props.vote
+          }
+
+        this.clicked = this.clicked.bind(this);
     }
+
+    getInitialState(){
+        return({
+               label   : this.props.label,
+               clicked : this.props.clicked,
+               vote    : this.props.vote
+          })
+    }
+
+  componentDidMount(){
+      this.setState({
+               label   : this.props.label,
+               clicked : this.props.clicked,
+               vote    : this.props.vote
+          });
+  }
+  render() {
+      if(this.state.label.localeCompare('aye') === 0)
+        return (
+            <button onClick={this.clicked} >
+                <i className="glyphicon glyphicon-thumbs-up"></i>
+            </button>
+        );
+      else
+        return (
+            <button onClick={this.clicked} >
+                <i className="glyphicon glyphicon-thumbs-down"></i>
+            </button>
+        );
+    }
+
+  clicked(){
+this.setState({clicked: true}, function () {
+    console.log(this.state.clicked);
+    console.log(this.state.label);
+    /*
+    * Pass vote to database
+    * this.setState({vote:
+    */
+});
+
+
+  }
 }
 
 export default VoteButton;
