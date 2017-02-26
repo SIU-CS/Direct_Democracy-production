@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class VoteGraph extends Component {
+class VoteGraph extends React.Component {
   render() {
     return (
       //<chart>
