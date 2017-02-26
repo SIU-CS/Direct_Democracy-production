@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '.././Main.css';
 import Bill from './Bill';
 
-class Main extends Component {
+class Main extends React.Component {
   render() {
     return (
       <div className="Main">

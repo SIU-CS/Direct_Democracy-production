@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import VoteOptions from './VoteOptions';
 /* import VoteGraph from './VoteGraph';*/
 
-class Bill extends Component {
+class Bill extends React.Component {
   render() {
       // if userLoggedIn && userHasVoted
 	    //     <VoteOptions />
