@@ -5,8 +5,8 @@ class VoteOptions extends Component {
   render() {
     return (
       <div className="VotingOptions">
-	<VoteButton type={true} />
-	<VoteButton type={false} />
+	      <VoteButton type={true} />
+	      <VoteButton type={false} />
       </div>
     );
   }

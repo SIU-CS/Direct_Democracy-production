@@ -5,16 +5,20 @@ render() {
 var type = this.props.type;
 if(type){
   return (
-<div>Yah</div>
+      <button onClick={this.clicked} >true</button>
   );
 }else{
   return (
-<div>Nah</div>
+      <button onClick={this.clicked} >false</button>
   );
 
 }
 
 }
+
+    clicked(){
+        console.log("Button Click!");
+    }
 }
 
 export default VoteButton;
