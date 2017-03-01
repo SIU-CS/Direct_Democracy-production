@@ -1,13 +1,13 @@
-.Main {
+.App {
   text-align: center;
 }
 
-.Main-logo {
-  animation: Main-logo-spin infinite 20s linear;
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 
-.Main-header {
+.App-header {
   background-color: #222;
   height: 100px;
   padding: 20px;
