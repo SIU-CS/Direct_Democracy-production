@@ -22,8 +22,8 @@ class VoteGraph extends React.Component {
              render() {
                  var PieChart = rd3.PieChart;
                  var pieData = [
-                     {label: "For", value: this.state.for},
-                     {label: "Against", value: this.state.against}
+                     {label: "Against", value: this.state.against},
+                     {label: "For", value: this.state.for}
                  ];
 
         /*
@@ -57,10 +57,10 @@ class VoteGraph extends React.Component {
       height={400}
       radius={100}
       innerRadius={50}
-      showOuterLabels={false}
+      showOuterLabels={true}
       showInnerLabels={false}
       sectorBorderColor="white"
-      title="VoteGraph" />
+      />
 
       </div>
     );

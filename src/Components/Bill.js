@@ -10,6 +10,7 @@ class Bill extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            billId: this.props.billId,
             selected: 'none',
             for     : 1,
             against : 1
@@ -50,7 +51,6 @@ class Bill extends React.Component {
 	    if((this.state.selected.localeCompare('none') === 0)){
       return (
         <div className="Bill">
-          <VoteGraph for={this.state.for} against={this.state.against}></VoteGraph>
           <BillTitle>
             {testTitle}
           </BillTitle>

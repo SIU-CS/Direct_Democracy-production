@@ -1,6 +1,6 @@
 import React from 'react';
 import '.././App.css';
-import Bill from './Bill';
+import Login from './Login';
 
 class App extends React.Component {
   render() {
@@ -8,7 +8,7 @@ class App extends React.Component {
       <div className="App">
         <div className="App-header">
         </div>
-	  <Bill />
+	  <Login />
       </div>
     );
   }
