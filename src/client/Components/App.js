@@ -7,8 +7,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="App-header">
+	        <Login />
         </div>
-	  <Login />
       </div>
     );
   }
