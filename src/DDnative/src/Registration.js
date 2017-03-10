@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   Alert,
@@ -18,7 +12,7 @@ import ResponsiveImage from 'react-native-responsive-image';
 
 const onButtonPress = () => { Alert.alert("I have been pressed!") };
 
-export default class Test extends Component {
+export default class Registration extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -73,4 +67,4 @@ const styles = StyleSheet.create({
     },
 });
 
-AppRegistry.registerComponent('Test', () => Test);
+AppRegistry.registerComponent('Registration', () => Registration);
