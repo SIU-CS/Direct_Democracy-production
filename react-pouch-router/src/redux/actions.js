@@ -54,14 +54,14 @@ export function submitVote() {
 //   });
 // }
 
-// This can be converted to login
-export function upsertPerson(name) {
+export function registerUser(name, pass) {
   return db.put({
     _id: generateId(),
-    name: name
+    name: name,
+    pass: pass
   }).then(() => {
     return {
-      type: 'UPSERT_PERSON'
+      type: 'REGISTER_USER'
     };
   }).catch(err => {
     throw err;

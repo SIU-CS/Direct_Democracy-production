@@ -26,8 +26,7 @@ export default (state=initialState, action) => {
     return state;
   case 'CHANGE_VOTE':
     return state;
-  //  UPSET_PERSON can be changed to login
-  case 'UPSERT_PERSON':
+  case 'REGISTER_USER':
     return state;
   default:
     return state;

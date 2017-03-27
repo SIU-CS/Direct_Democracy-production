@@ -7,7 +7,6 @@ import MUI from 'material-ui';
 import NavBar from './nav-bar';
 import React from 'react';
 import ShowBill from './show-bill';
-import BillList from './bill-list';
 import { connect } from 'react-redux';
 import { fetchBills } from '../redux/actions';
 
@@ -54,7 +53,6 @@ let App = React.createClass({
           <h1>{greeting}</h1>
 
           <ShowBill bill={bill} />
-          <BillList bill={bill} />
 
 
           <div>

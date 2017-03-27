@@ -27,7 +27,7 @@ export default React.createClass({
              onActive={this._handleTabActive} />
         <Tab label="About" route="/about" value="/about"
              onActive={this._handleTabActive} />
-        <Tab label="New Person" route="/new-person" value="/votes"
+        <Tab label="Register" route="/register" value="/register"
              onActive={this._handleTabActive} />
       </Tabs>
     );

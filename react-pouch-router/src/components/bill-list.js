@@ -8,22 +8,7 @@ let BillList = React.createClass({
     bill: React.PropTypes.array
   },
 
-  // _logBill() {
-  //     let { bill } = this.props;
-  //     bill.map((obj) => {
-  //         //    console.log(obj);
-  //         console.log(obj.name);
-  //     });
-  //     //     console.log(JSON.stringify(bill));
-  //     //     console.log(JSON.stringify(bill, null, 2));
-  // },
-
   render() {
-    // let { bill } = this.props;
-    // bill.map(function (item) {
-    //   console.log(item.name);
-    // });
-
     return(
       <span>
             <h3>Bill List</h3>
