@@ -10,48 +10,51 @@ export function setGreeting(greeting) {
   };
 }
 
-export function togglePeopleModal() {
+export function toggleBillModal() {
   return {
-    type: 'TOGGLE_PEOPLE_MODAL'
+    type: 'TOGGLE_BILL_MODAL'
   };
 }
 
-export function fetchPeople() {
+//  change to fetch votes for user after login
+//  export function fetchBills(user) {
+export function fetchBills() {
   return db.allDocs({
     include_docs: true // eslint-disable-line camelcase
-  }).then(people => {
+  }).then(bill => {
     return {
-      type: 'FETCH_PEOPLE',
-      people: mapDocsFromPouch(people)
+      type: 'FETCH_BILLS',
+      bill: mapDocsFromPouch(bill)
     };
   }).catch(err => {
     throw err;
   });
 }
 
-export function deletePerson() {
+export function submitVote() {
   return {
-    type: 'DELETE_PERSON'
+    type: 'SUBMIT_VOTE'
   };
 }
 
-export function deletePeople() {
-  return db.allDocs({
-    include_docs: true // eslint-disable-line camelcase
-  }).then(records => {
-    return Promise.all(
-      records.rows.map(row => row.doc)
-        .map(doc => db.remove(doc))
-    ).then(() => {
-      return {
-        type: 'DELETE_PEOPLE'
-      };
-    });
-  }).catch(err => {
-    throw err;
-  });
-}
+// export function deleteBill() {
+//   return db.allDocs({
+//     include_docs: true // eslint-disable-line camelcase
+//   }).then(records => {
+//     return Promise.all(
+//       records.rows.map(row => row.doc)
+//         .map(doc => db.remove(doc))
+//     ).then(() => {
+//       return {
+//         type: 'SUBMIT_VOTE'
+//       };
+//     });
+//   }).catch(err => {
+//     throw err;
+//   });
+// }
 
+// This can be converted to login
 export function upsertPerson(name) {
   return db.put({
     _id: generateId(),

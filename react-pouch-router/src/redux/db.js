@@ -2,9 +2,9 @@
 
 import store from './store';
 import PouchDB from 'pouchdb';
-import { fetchPeople } from './actions';
+import { fetchBills } from './actions';
 
-let db = new PouchDB('http://localhost:5984/test');
+let db = new PouchDB('app');
 
 db.changes({
   live: true,
@@ -14,7 +14,7 @@ db.changes({
   .on('error', console.log.bind(console));
 
 function changeCallback() {
-  store.dispatch(fetchPeople());
+  store.dispatch(fetchBills());
 
   // TODO: add/remove specific docs instead of fetching allDocs
 

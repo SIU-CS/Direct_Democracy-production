@@ -3,13 +3,13 @@
 import css from '../styles/app';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import store from '../redux/store';
-import DeletePeople from './delete-people';
 import MUI from 'material-ui';
 import NavBar from './nav-bar';
 import React from 'react';
-import ShowPeople from './show-people';
+import ShowBill from './show-bill';
+import BillList from './bill-list';
 import { connect } from 'react-redux';
-import { fetchPeople } from '../redux/actions';
+import { fetchBills } from '../redux/actions';
 
 const {
   Card,
@@ -24,7 +24,7 @@ let App = React.createClass({
   propTypes: {
     children: React.PropTypes.object,
     greeting: React.PropTypes.string,
-    people: React.PropTypes.array,
+    bill: React.PropTypes.array,
     history: React.PropTypes.object,
     location: React.PropTypes.object
   },
@@ -40,11 +40,11 @@ let App = React.createClass({
   },
 
   componentDidMount() {
-    store.dispatch(fetchPeople());
+    store.dispatch(fetchBills());
   },
 
   render() {
-    let { greeting, people, history, location } = this.props;
+    let { greeting, bill, history, location } = this.props;
 
     return (
       <div>
@@ -53,9 +53,9 @@ let App = React.createClass({
         <Card style={css.appCard}>
           <h1>{greeting}</h1>
 
-          <ShowPeople people={people} />
+          <ShowBill bill={bill} />
+          <BillList bill={bill} />
 
-          <DeletePeople />
 
           <div>
             {this.props.children}
@@ -71,6 +71,6 @@ export default connect(mapStateToProps)(App);
 function mapStateToProps(state) {
   return {
     greeting: state.greeting,
-    people: state.people
+    bill: state.bill
   };
 }

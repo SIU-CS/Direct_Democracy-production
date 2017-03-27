@@ -2,7 +2,7 @@
 
 let initialState = {
   greeting: 'Greetings!',
-  peopleModalOpen: false
+  billModalOpen: false
 };
 
 export default (state=initialState, action) => {
@@ -12,20 +12,21 @@ export default (state=initialState, action) => {
       ...state,
       greeting: action.greeting
     };
-  case 'TOGGLE_PEOPLE_MODAL':
+  case 'TOGGLE_BILL_MODAL':
     return {
       ...state,
-      peopleModalOpen: !state.peopleModalOpen
+      billModalOpen: !state.billModalOpen
     };
-  case 'FETCH_PEOPLE':
+  case 'FETCH_BILLS':
     return {
       ...state,
-      people: action.people
+      bill: action.bill
     };
-  case 'DELETE_PERSON':
+  case 'SUBMIT_VOTE':
     return state;
-  case 'DELETE_PEOPLE':
+  case 'CHANGE_VOTE':
     return state;
+  //  UPSET_PERSON can be changed to login
   case 'UPSERT_PERSON':
     return state;
   default:

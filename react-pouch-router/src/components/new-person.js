@@ -12,13 +12,13 @@ const {
 
 export default React.createClass({
   _submitHandler() {
-    let { newPersonName } = this.refs;
+    let { vote } = this.refs;
 
     store.dispatch(
-      upsertPerson(newPersonName.getValue())
+      upsertPerson(vote.getValue())
     );
 
-    newPersonName.clearValue();
+    vote.clearValue();
   },
 
   render() {
@@ -27,7 +27,7 @@ export default React.createClass({
         <h3>New Person</h3>
 
         <TextField hintText="Enter a full Name" fullWidth={true}
-                   floatingLabelText="Name" ref="newPersonName"
+                   floatingLabelText="Name" ref="vote"
                    onEnterKeyDown={this._submitHandler} />
 
         <RaisedButton label="Create" secondary={true} onClick={this._submitHandler} />
