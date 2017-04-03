@@ -4,7 +4,8 @@ import store from './store';
 import PouchDB from 'pouchdb';
 import { fetchBills } from './actions';
 
-let db = new PouchDB('app');
+let db = new PouchDB('http://131.230.166.104:5984/users');
+// let db = new PouchDB('app');
 
 db.changes({
   live: true,
@@ -16,7 +17,6 @@ db.changes({
 function changeCallback() {
   store.dispatch(fetchBills());
 
-  // TODO: add/remove specific docs instead of fetching allDocs
 
   // if (change.deleted) {
   //   store.dispatch(deletePerson(change.id))
