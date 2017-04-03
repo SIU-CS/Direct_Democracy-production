@@ -50,7 +50,7 @@ let App = React.createClass({
         <NavBar history={history} pathname={location.pathname} />
 
         <Card style={css.appCard}>
-          <h1>{greeting}</h1>
+          <h2>{greeting}</h2>
 
           <ShowBill bill={bill} />
 
@@ -69,6 +69,7 @@ export default connect(mapStateToProps)(App);
 function mapStateToProps(state) {
   return {
     greeting: state.greeting,
+    billSelected: state.billSelected,
     bill: state.bill
   };
 }

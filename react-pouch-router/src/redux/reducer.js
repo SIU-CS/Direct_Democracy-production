@@ -1,7 +1,8 @@
 'use strict';
 
 let initialState = {
-  greeting: 'Greetings!',
+  greeting: 'Direct Democracy',
+  selectedBill: {name: 'none'},
   billModalOpen: false
 };
 
@@ -11,6 +12,11 @@ export default (state=initialState, action) => {
     return {
       ...state,
       greeting: action.greeting
+    };
+  case 'SELECT_BILL':
+    return {
+      ...state,
+      selectedBill: action.selectedBill
     };
   case 'TOGGLE_BILL_MODAL':
     return {

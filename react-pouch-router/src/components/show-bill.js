@@ -1,5 +1,6 @@
 'use strict';
 
+import css from '../styles/app';
 import store from '../redux/store';
 import MUI from 'material-ui';
 import React from 'react';
@@ -21,13 +22,7 @@ let ShowBill = React.createClass({
   },
 
   _toggleBillModal() {
-    let { bill } = this.props;
     store.dispatch(toggleBillModal());
-    bill.map((obj) => {
-      console.log(obj.name);
-    });
-    //  console.log(JSON.stringify(bill));
-    //  console.log(JSON.stringify(bill, null, 2));
   },
 
   render() {
@@ -35,12 +30,19 @@ let ShowBill = React.createClass({
 
     return (
       <span>
-        <RaisedButton label="Show Bill" primary={true}
-                      onClick={this._toggleBillModal} />
+        <RaisedButton label="Vote!" primary={true} style={css.button}
+          onClick={this._toggleBillModal} />
+            <span>
+            <RaisedButton label="Show Bill" primary={true} style={css.button}
+          onClick={this._toggleBillModal} />
 
-        <Dialog title="Bill in the Redux Store" ref="billDialog"
+            </span>
+          <Dialog title="Are you sure you want to vote on Bill Title?" ref="billDialog"
                 autoDetectWindowHeight={true} autoScrollBodyContent={true}
                 open={billModalOpen} onRequestClose={this._toggleBillModal}>
+
+          <div>
+          </div>
           <div><pre>{JSON.stringify(bill, null, 2)}</pre></div>
         </Dialog>
       </span>

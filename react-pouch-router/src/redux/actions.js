@@ -37,6 +37,12 @@ export function submitVote() {
   };
 }
 
+export function selectBill(selectedBill) {
+  return {
+    type: 'SELECT_BILL',
+    selectedBill
+  };
+}
 // export function deleteBill() {
 //   return db.allDocs({
 //     include_docs: true // eslint-disable-line camelcase
