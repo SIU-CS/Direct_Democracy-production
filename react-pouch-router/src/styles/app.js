@@ -2,7 +2,10 @@
 
 export default {
   appCard: {
-    padding: '10px'
+    padding: '25px'
+  },
+  logo: {
+    marginLeft: '70px'
   },
   button: {
     margin: '10px'
@@ -15,6 +18,10 @@ export default {
   },
   bill: {
     width: '80em',
+    float: 'right'
+  },
+  registerText: {
+    margin: '20px',
     float: 'right'
   }
 };

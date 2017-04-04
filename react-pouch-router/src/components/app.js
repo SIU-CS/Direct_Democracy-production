@@ -46,7 +46,7 @@ let App = React.createClass({
 
     return (
       <div>
-            <NavBar user={user} history={history} pathname={location.pathname} />
+        <NavBar user={user} history={history} pathname={location.pathname} />
 
         <Card style={css.appCard}>
           <h2>{greeting}</h2>

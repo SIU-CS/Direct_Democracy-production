@@ -20,13 +20,13 @@ let NavBar = React.createClass({
     history.pushState(null, route);
   },
   createAccountNav() {
-    let { user } = this.props;
-    if (!user || user.localeCompare('none') === 0) {
-      return(<Tab label="Register" route="/register" value="/register"
-               onActive={this._handleTabActive} />
-      );
-    }
-    return(<Tab label="Account" route="/register" value="/register"
+    // let { user } = this.props;
+    // if (!user || user.localeCompare('none') === 0) {
+    //   return(<Tab label="Login" route="/login" value="/login"
+    //            onActive={this._handleTabActive} />
+    //   );
+    // }
+    return(<Tab label="Account" route="/account" value="/account"
              onActive={this._handleTabActive} />
     );
   },

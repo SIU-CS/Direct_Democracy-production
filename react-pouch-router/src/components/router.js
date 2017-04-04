@@ -3,7 +3,8 @@
 import About from './about';
 import App from './app';
 import Index from './index';
-import Register from './register';
+import Account from './account';
+import Login from './login';
 import BillList from './bill-list';
 import NoMatch from './no-match';
 import React from 'react';
@@ -17,7 +18,8 @@ export default React.createClass({
           <IndexRoute name="index" component={Index} />
           <Route name="bills" path="bills" component={BillList} />
           <Route name="about" path="about" component={About}/>
-          <Route name="register" path="register" component={Register}/>
+          <Route name="login" path="login" component={Login}/>
+          <Route name="account" path="account" component={Account}/>
           <Route path="*" component={NoMatch}/>
         </Route>
       </Router>

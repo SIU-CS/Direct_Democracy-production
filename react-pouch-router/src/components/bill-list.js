@@ -16,7 +16,7 @@ let BillList = React.createClass({
   render() {
     return(
       <span>
-        <h3>Bill List</h3>
+        <h3>Pending Legislation</h3>
             <div className='container-full'>
         <div className="list-group" style={css.list}>
           {this.createBillList()}
@@ -29,7 +29,7 @@ let BillList = React.createClass({
   createBillList() {
     let { bill } = this.props;
     if (!bill) {
-      return 'Looks like there\'s nothing here!';
+      return 'Oops! Looks like there\'s nothing here!';
     }
     return bill.map(function (item) {
       return(<button key={item._id} type="button" className="list-group-item"
