@@ -2,6 +2,7 @@
 
 let initialState = {
   greeting: 'Direct Democracy',
+  user: 'none',
   selectedBill: {title: 'none'},
   billModalOpen: false
 };

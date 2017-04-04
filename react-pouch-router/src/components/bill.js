@@ -11,12 +11,13 @@ const { RaisedButton } = MUI;
 
 let Bill = React.createClass({
   propTypes: {
-    selectedBill: React.PropTypes.object
+    selectedBill: React.PropTypes.object,
+    user: React.PropTypes.string
   },
 
 
   render() {
-    let { selectedBill } = this.props;
+    let { selectedBill, user } = this.props;
 
     if (selectedBill.title.localeCompare('none') === 0) {
       return (<div className='Bill'>
@@ -35,9 +36,9 @@ let Bill = React.createClass({
         </p>
 
         <RaisedButton label="For" primary={true} style={css.button}
-        onClick={()=>_submitVote(selectedBill._id, 1)} />
+        onClick={()=>_submitVote(user, selectedBill._id, 1)} />
         <RaisedButton label="Against" primary={true} style={css.button}
-        onClick={()=>_submitVote(selectedBill._id, 0)} />
+        onClick={()=>_submitVote(user, selectedBill._id, 0)} />
       </div>
     );
   }
@@ -47,12 +48,13 @@ export default connect(mapStateToProps)(Bill);
 
 function mapStateToProps(state) {
   return {
-    selectedBill: state.selectedBill
+    selectedBill: state.selectedBill,
+    user: state.user
   };
 }
 
-function _submitVote(billId, vote) {
+function _submitVote(user, billId, vote) {
   store.dispatch(
-    submitVote(billId, vote)
+    submitVote(user, billId, vote)
   );
 }
