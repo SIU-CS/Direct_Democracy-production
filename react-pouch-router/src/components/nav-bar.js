@@ -2,12 +2,14 @@
 
 import MUI from 'material-ui';
 import React from 'react';
+import { connect } from 'react-redux';
 
 const { Tabs, Tab } = MUI;
 
-export default React.createClass({
+let NavBar = React.createClass({
   propTypes: {
     history: React.PropTypes.object,
+    user: React.PropTypes.string,
     pathname: React.PropTypes.string
   },
 
@@ -17,10 +19,20 @@ export default React.createClass({
 
     history.pushState(null, route);
   },
+  createAccountNav() {
+    let { user } = this.props;
+    if (!user || user.localeCompare('none') === 0) {
+      return(<Tab label="Register" route="/register" value="/register"
+               onActive={this._handleTabActive} />
+      );
+    }
+    return(<Tab label="Account" route="/register" value="/register"
+             onActive={this._handleTabActive} />
+    );
+  },
 
   render() {
     let { pathname } = this.props;
-
     return (
       <Tabs value={pathname}>
         <Tab label="Index" route="/" value="/"
@@ -29,9 +41,16 @@ export default React.createClass({
              onActive={this._handleTabActive} />
         <Tab label="About" route="/about" value="/about"
              onActive={this._handleTabActive} />
-        <Tab label="Register" route="/register" value="/register"
-             onActive={this._handleTabActive} />
+        {this.createAccountNav()}
       </Tabs>
     );
   }
 });
+
+export default connect(mapStateToProps)(NavBar);
+
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}

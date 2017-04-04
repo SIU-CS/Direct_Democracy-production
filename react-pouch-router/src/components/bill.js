@@ -5,7 +5,7 @@ import store from '../redux/store';
 import css from '../styles/app';
 import MUI from 'material-ui';
 import { connect } from 'react-redux';
-import { submitVote, toggleBillModal } from '../redux/actions';
+import { registerUser, submitVote, toggleBillModal } from '../redux/actions';
 
 const { Dialog, TextField, RaisedButton } = MUI;
 
@@ -25,19 +25,20 @@ let Bill = React.createClass({
   _submitHandler() {
     let { user, pass } = this.refs;
     if (user.getValue().localeCompare('') === 0) {
-      console.log('user');
+      // console.log('user');
       return;
     }
     if (pass.getValue().localeCompare('') === 0) {
-      console.log('pass');
+      // console.log('pass');
       return;
     }
-    // store.dispatch(
-    //   registerUser(user.getValue(), pass.getValue())
-    // );
+    store.dispatch(
+      registerUser(user.getValue(), pass.getValue())
+    );
 
     user.clearValue();
     pass.clearValue();
+    this._toggleBillModal();
   },
 
   createDialog() {

@@ -22,7 +22,7 @@ let App = React.createClass({
   propTypes: {
     children: React.PropTypes.object,
     greeting: React.PropTypes.string,
-    // bill: React.PropTypes.array,
+    user: React.PropTypes.string,
     history: React.PropTypes.object,
     location: React.PropTypes.object
   },
@@ -42,11 +42,11 @@ let App = React.createClass({
   },
 
   render() {
-    let { greeting, history, location } = this.props;
+    let { greeting, user, history, location } = this.props;
 
     return (
       <div>
-        <NavBar history={history} pathname={location.pathname} />
+            <NavBar user={user} history={history} pathname={location.pathname} />
 
         <Card style={css.appCard}>
           <h2>{greeting}</h2>
