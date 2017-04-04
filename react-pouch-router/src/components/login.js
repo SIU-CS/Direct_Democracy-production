@@ -1,6 +1,7 @@
 'use strict';
 
-import { registerUser } from '../redux/actions';
+// import { registerUser } from '../redux/actions';
+import { logInUser } from '../redux/actions';
 import store from '../redux/store';
 import MUI from 'material-ui';
 import React from 'react';
@@ -16,7 +17,7 @@ export default React.createClass({
     let { user, pass } = this.refs;
 
     store.dispatch(
-      registerUser(user.getValue(), pass.getValue())
+      logInUser(user.getValue(), pass.getValue())
     );
 
     user.clearValue();
