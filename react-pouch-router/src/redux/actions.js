@@ -2,6 +2,7 @@
 
 import crypto from 'crypto';
 import db from './db';
+import { billsDB } from './db';
 
 export function setGreeting(greeting) {
   return {
@@ -19,7 +20,7 @@ export function toggleBillModal() {
 //  change to fetch votes for user after login
 //  export function fetchBills(user) {
 export function fetchBills() {
-  return db.allDocs({
+  return billsDB.allDocs({
     include_docs: true // eslint-disable-line camelcase
   }).then(bill => {
     return {
@@ -78,10 +79,11 @@ function mapDocsFromPouch(records) {
   if (!records) {
     return {};
   }
-
   return records.rows.map(record => record.doc);
 }
 
 function generateId() {
   return crypto.randomBytes(16).toString('hex');
 }
+
+

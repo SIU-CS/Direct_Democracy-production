@@ -27,11 +27,11 @@ export default React.createClass({
       <div>
         <h3>Registration</h3>
 
-        <TextField hintText="" fullWidth={true} type="text"
+        <TextField hintText="" fullWidth={true}
                    floatingLabelText="Email or Username" ref="user"
                    onEnterKeyDown={this._submitHandler} />
 
-        <TextField hintText="" fullWidth={true} type="password"
+        <TextField hintText="" fullWidth={true}
                    floatingLabelText="Password" ref="pass"
                    onEnterKeyDown={this._submitHandler} />
 

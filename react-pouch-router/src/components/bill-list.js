@@ -32,9 +32,9 @@ let BillList = React.createClass({
       return 'Looks like there\'s nothing here!';
     }
     return bill.map(function (item) {
-      return(<button key={item.name} type="button" className="list-group-item"
+      return(<button key={item.title} type="button" className="list-group-item"
              onClick={()=>selectedBill(item)} >
-               {item.name}
+               {item.title}
              </button>);
     });
   }

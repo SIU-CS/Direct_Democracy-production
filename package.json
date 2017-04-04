@@ -62,6 +62,7 @@
     "react": "^15.4.2",
     "react-d3-basic": "^1.6.11",
     "react-dom": "^15.4.2",
+    "request": "^2.81.0",
     "webpack": "^1.14.0"
   },
   "scripts": {

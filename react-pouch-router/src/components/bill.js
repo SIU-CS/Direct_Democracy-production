@@ -12,18 +12,17 @@ let Bill = React.createClass({
     selectedBill: React.PropTypes.object
   },
 
-
   render() {
     let { selectedBill } = this.props;
-
-    if (selectedBill.name.localeCompare('none') === 0) {
+    if (selectedBill.title.localeCompare('none') === 0) {
       return (<div className='Bill'>
                 <h3>Select a bill from the list to vote!</h3>
               </div>
       );
     }
 
-    let testText = 'I\'m just a bill '
+    let testText = selectedBill.billText;
+	/*'I\'m just a bill '
 + 'Yes I\'m only a bill, '
 + 'And I got as far as Capitol Hill. '
 + 'Well, now I\'m stuck in committee '
@@ -31,11 +30,11 @@ let Bill = React.createClass({
 + 'While a few key Congressmen discuss and debate '
 + 'Whether they should let me be a law. '
 + 'How I hope and pray that they will, '
-+ 'But today I am still just a bill.';
++ 'But today I am still just a bill.';*/
     return (
       <div className='Bill'>
         <h3>
-          {selectedBill.name}
+          {selectedBill.title}
         </h3>
         <p>
           {testText}

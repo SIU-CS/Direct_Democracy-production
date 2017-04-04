@@ -2,7 +2,7 @@
 
 let initialState = {
   greeting: 'Direct Democracy',
-  selectedBill: {name: 'none'},
+  selectedBill: {title: 'none'},
   billModalOpen: false
 };
 
@@ -27,6 +27,21 @@ export default (state=initialState, action) => {
     return {
       ...state,
       bill: action.bill
+    };
+  case 'DOC_SEARCH':
+    return {
+      ...state,
+      docs: action.docs
+    };
+  case 'DOC_TERM':
+    return {
+      ...state,
+      term: action.term
+    };
+  case 'FETCH_INFO':
+    return {
+      ...state,
+      info: action.info
     };
   case 'SUBMIT_VOTE':
     return state;
