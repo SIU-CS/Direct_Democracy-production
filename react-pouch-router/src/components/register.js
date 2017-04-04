@@ -12,14 +12,29 @@ const {
 
 export default React.createClass({
   _submitHandler() {
-    let { user, pass } = this.refs;
+    let { user, pass, confirm } = this.refs;
+    if (user.getValue().localeCompare('') === 0) {
+      // console.log('user');
+      return;
+    }
+    if (pass.getValue().localeCompare('') === 0) {
+      // console.log('pass');
+      return;
+    }
+    if (confirm.getValue().localeCompare('') === 0) {
+      // console.log('user');
+      return;
+    }
 
-    store.dispatch(
-      registerUser(user.getValue(), pass.getValue())
-    );
+    if (pass.getValue().localeCompare(confirm.getValue()) === 0) {
+      store.dispatch(
+        registerUser(user.getValue(), pass.getValue())
+      );
 
-    user.clearValue();
-    pass.clearValue();
+      user.clearValue();
+      pass.clearValue();
+      confirm.clearValue();
+    }
   },
 
   render() {
@@ -33,6 +48,10 @@ export default React.createClass({
 
         <TextField hintText="" fullWidth={true} type="password"
                    floatingLabelText="Password" ref="pass"
+                   onEnterKeyDown={this._submitHandler} />
+
+        <TextField hintText="" fullWidth={true} type="password"
+                   floatingLabelText="Confirm Password" ref="confirm"
                    onEnterKeyDown={this._submitHandler} />
 
         <RaisedButton label="Create Account" secondary={true} onClick={this._submitHandler} />

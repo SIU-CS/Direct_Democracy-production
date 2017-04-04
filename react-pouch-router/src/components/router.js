@@ -2,6 +2,7 @@
 
 import About from './about';
 import App from './app';
+import Register from './register';
 import Index from './index';
 import Account from './account';
 import Login from './login';
@@ -19,6 +20,7 @@ export default React.createClass({
           <Route name="bills" path="bills" component={BillList} />
           <Route name="about" path="about" component={About}/>
           <Route name="login" path="login" component={Login}/>
+          <Route name="register" path="register" component={Register}/>
           <Route name="account" path="account" component={Account}/>
           <Route path="*" component={NoMatch}/>
         </Route>

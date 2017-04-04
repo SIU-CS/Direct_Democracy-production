@@ -37,7 +37,9 @@ export default React.createClass({
                    onEnterKeyDown={this._submitHandler} />
 
         <RaisedButton label="Create Account" secondary={true} onClick={this._submitHandler} />
-            <div style={css.registerText}>Not a user? Register here!</div>
+        <div style={css.registerText}>
+            <a href="/#/register">Not a user? Register here!</a>
+        </div>
       </div>
     );
   }

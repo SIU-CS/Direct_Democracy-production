@@ -25,7 +25,7 @@ export default React.createClass({
   render() {
     return (
       <div>
-        <h3>Registration</h3>
+        <h3>Welcome</h3>
 
         <TextField hintText="" fullWidth={true} type="text"
                    floatingLabelText="Email or Username" ref="user"

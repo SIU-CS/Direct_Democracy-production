@@ -7,7 +7,7 @@ export default React.createClass({
   render() {
     return (
       <div>
-            <img src="logo.svg" style={css.logo} height='330' width='100' ></img>
+            <img src="logo.svg" style={css.logo} height='375' width='100' ></img>
             <h3>Your Vote, Your Voice.</h3>
       </div>
     );
