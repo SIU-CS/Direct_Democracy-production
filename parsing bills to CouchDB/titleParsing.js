@@ -16,9 +16,10 @@ request('https://www.whitehouse.gov/briefing-room/pending-legislation', function
       // Parse the link title
       var title = a.text();
 	  var data = {
-		title: title
-	};
-	  datb.insert(data, 'unique_id', function(err, body){
+		title: title,
+		billText: "TODO"
+		};
+	  datb.insert(data, Math.random().toString(36).substring(7), function(err, body){
 	  if(!err){}
 	  });
       // Parse the href attribute from the "a" element
