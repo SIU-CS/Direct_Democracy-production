@@ -6,7 +6,6 @@ import store from '../redux/store';
 import MUI from 'material-ui';
 import NavBar from './nav-bar';
 import React from 'react';
-import ShowBill from './show-bill';
 import { connect } from 'react-redux';
 import { fetchBills } from '../redux/actions';
 
@@ -23,7 +22,7 @@ let App = React.createClass({
   propTypes: {
     children: React.PropTypes.object,
     greeting: React.PropTypes.string,
-    bill: React.PropTypes.array,
+    // bill: React.PropTypes.array,
     history: React.PropTypes.object,
     location: React.PropTypes.object
   },
@@ -43,7 +42,7 @@ let App = React.createClass({
   },
 
   render() {
-    let { greeting, bill, history, location } = this.props;
+    let { greeting, history, location } = this.props;
 
     return (
       <div>
@@ -51,9 +50,6 @@ let App = React.createClass({
 
         <Card style={css.appCard}>
           <h2>{greeting}</h2>
-
-          <ShowBill bill={bill} />
-
 
           <div>
             {this.props.children}
