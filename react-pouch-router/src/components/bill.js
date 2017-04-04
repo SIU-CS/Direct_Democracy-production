@@ -5,6 +5,7 @@ import store from '../redux/store';
 import css from '../styles/app';
 import MUI from 'material-ui';
 import { connect } from 'react-redux';
+import { submitVote } from '../redux/actions';
 
 const { RaisedButton } = MUI;
 
@@ -52,6 +53,6 @@ function mapStateToProps(state) {
 
 function _submitVote(billId, vote) {
   store.dispatch(
-    submitVote(billId, vote);
+    submitVote(billId, vote)
   );
 }
