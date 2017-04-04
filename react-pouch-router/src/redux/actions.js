@@ -3,6 +3,7 @@
 import crypto from 'crypto';
 import db from './db';
 import { billsDB } from './db';
+import { votesDB } from './db';
 
 export function setGreeting(greeting) {
   return {
@@ -32,10 +33,19 @@ export function fetchBills() {
   });
 }
 
-export function submitVote() {
-  return {
-    type: 'SUBMIT_VOTE'
-  };
+export function submitVote(user, bill, preference) {
+  return votesDB.put({
+    _id: generateId(),
+    userID: user,
+    billID: bill,
+    vote: preference
+  }).then(() => {
+    return {
+      type: 'SUBMIT_VOTE'
+    };
+  }).catch(err => {
+    throw err;
+  });
 }
 
 export function selectBill(selectedBill) {

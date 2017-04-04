@@ -36,7 +36,7 @@ export default React.createClass({
                    floatingLabelText="Password" ref="pass"
                    onEnterKeyDown={this._submitHandler} />
 
-        <RaisedButton label="Create Account" secondary={true} onClick={this._submitHandler} />
+        <RaisedButton label="Login" secondary={true} onClick={this._submitHandler} />
         <div style={css.registerText}>
             <a href="/#/register">Not a user? Register here!</a>
         </div>
