@@ -15,6 +15,15 @@ export default React.createClass({
   _submitHandler() {
     let { user, pass } = this.refs;
 
+    if (user.getValue().localeCompare('') === 0) {
+        // console.log('user');
+        return;
+    }
+    if (pass.getValue().localeCompare('') === 0) {
+        // console.log('pass');
+        return;
+    }
+
     store.dispatch(
       registerUser(user.getValue(), pass.getValue())
     );
