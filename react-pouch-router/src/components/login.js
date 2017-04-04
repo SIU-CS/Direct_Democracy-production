@@ -1,6 +1,7 @@
 'use strict';
 
-import { registerUser } from '../redux/actions';
+// import { registerUser } from '../redux/actions';
+import { logInUser } from '../redux/actions';
 import store from '../redux/store';
 import MUI from 'material-ui';
 import React from 'react';
@@ -25,7 +26,7 @@ export default React.createClass({
     }
 
     store.dispatch(
-      registerUser(user.getValue(), pass.getValue())
+      logInUser(user.getValue(), pass.getValue())
     );
 
     user.clearValue();
@@ -45,7 +46,7 @@ export default React.createClass({
                    floatingLabelText="Password" ref="pass"
                    onEnterKeyDown={this._submitHandler} />
 
-        <RaisedButton label="Create Account" secondary={true} onClick={this._submitHandler} />
+        <RaisedButton label="Login" secondary={true} onClick={this._submitHandler} />
         <div style={css.registerText}>
             <a href="/#/register">Not a user? Register here!</a>
         </div>

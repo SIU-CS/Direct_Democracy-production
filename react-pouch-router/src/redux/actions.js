@@ -3,6 +3,29 @@
 import crypto from 'crypto';
 import db from './db';
 import { billsDB } from './db';
+import { votesDB } from './db';
+import { routeActions } from 'react-router-redux';
+
+
+export const ERROR = 'ERROR';
+export const AUTHENTICATION_STATE = {
+  AUTHENTICATED: 'AUTHENTICATED',
+  UNAUTHENTICATED: 'UNAUTHENTICATED'
+};
+
+const { AUTHENTICATED, UNAUTHENTICATED } = AUTHENTICATION_STATE;
+
+export function handleError(err) {
+  return { type: ERROR, err };
+}
+
+export function logOutUserAction(user) {
+  return { type: UNAUTHENTICATED, user };
+}
+
+export function logInUserAction(name) {
+  return { type: AUTHENTICATED, name: name };
+}
 
 export function setGreeting(greeting) {
   return {
@@ -32,10 +55,19 @@ export function fetchBills() {
   });
 }
 
-export function submitVote() {
-  return {
-    type: 'SUBMIT_VOTE'
-  };
+export function submitVote(user, bill, preference) {
+  return votesDB.put({
+    _id: generateId(),
+    userID: user,
+    billID: bill,
+    vote: preference
+  }).then(() => {
+    return {
+      type: 'SUBMIT_VOTE'
+    };
+  }).catch(err => {
+    throw err;
+  });
 }
 
 export function selectBill(selectedBill) {
@@ -57,6 +89,19 @@ export function registerUser(name, pass) {
   }).catch(err => {
     throw err;
   });
+}
+
+export function logInUser(name, pass) {
+  return dispatch => {
+    return db.login(name, pass, function (err, response) {
+      if (err) {
+        dispatch(handleError(err));
+      } else {
+        dispatch(logInUserAction(response.name));
+        dispatch(routeActions.push('/home'));
+      }
+    });
+  };
 }
 
 function mapDocsFromPouch(records) {
