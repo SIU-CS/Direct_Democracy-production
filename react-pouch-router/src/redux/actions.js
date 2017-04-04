@@ -44,22 +44,6 @@ export function selectBill(selectedBill) {
     selectedBill
   };
 }
-// export function deleteBill() {
-//   return db.allDocs({
-//     include_docs: true // eslint-disable-line camelcase
-//   }).then(records => {
-//     return Promise.all(
-//       records.rows.map(row => row.doc)
-//         .map(doc => db.remove(doc))
-//     ).then(() => {
-//       return {
-//         type: 'SUBMIT_VOTE'
-//       };
-//     });
-//   }).catch(err => {
-//     throw err;
-//   });
-// }
 
 export function registerUser(name, pass) {
   return db.put({
