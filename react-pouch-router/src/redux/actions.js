@@ -27,6 +27,28 @@ export function logInUserAction(name) {
   return { type: AUTHENTICATED, name: name };
 }
 
+export function userLogin(user) {
+    // something like this?
+    //
+    // export function registerUser(name, pass) {
+    //     return db.put({
+    //         _id: generateId(),
+    //         name: name,
+    //         pass: pass
+    //     }).then(() => {
+    //         return {
+    //             type: 'REGISTER_USER'
+    //         };
+    //     }).catch(err => {
+    //         throw err;
+    //     });
+    // }
+  return {
+    type: 'USER_LOGIN',
+    user
+  };
+}
+
 export function setGreeting(greeting) {
   return {
     type: 'SET_GREETING',

@@ -1,18 +1,19 @@
 'use strict';
 
 import React from 'react';
+import { userLogin } from '../redux/actions';
 import store from '../redux/store';
 import css from '../styles/app';
 import MUI from 'material-ui';
 import { connect } from 'react-redux';
-import { registerUser, submitVote, toggleBillModal } from '../redux/actions';
+import { submitVote, toggleBillModal } from '../redux/actions';
 
 const { Dialog, TextField, RaisedButton } = MUI;
 
 let VoteButtons = React.createClass({
   propTypes: {
     selectedBill: React.PropTypes.object,
-    user: React.PropTypes.string,
+    user: React.PropTypes.object,
     billModalOpen: React.PropTypes.oneOfType([
       React.PropTypes.func,
       React.PropTypes.bool
@@ -23,8 +24,10 @@ let VoteButtons = React.createClass({
     store.dispatch(toggleBillModal());
   },
   _submitHandler() {
-    let { user, pass } = this.refs;
-    if (user.getValue().localeCompare('') === 0) {
+    let { user } = this.props;
+    let { username, pass } = this.refs;
+
+    if (username.getValue().localeCompare('') === 0) {
       // console.log('user');
       return;
     }
@@ -32,24 +35,29 @@ let VoteButtons = React.createClass({
       // console.log('pass');
       return;
     }
+    user.name = username.getValue();
+    console.log(user);
     store.dispatch(
-      registerUser(user.getValue(), pass.getValue())
+      userLogin(user, pass.getValue())
     );
+    // store.dispatch(
+    //   logInUser(user.getValue(), pass.getValue())
+    // );
 
-    user.clearValue();
+    username.clearValue();
     pass.clearValue();
     this._toggleBillModal();
   },
 
   createDialog() {
     let { user, billModalOpen } = this.props;
-    if (user.localeCompare('none') === 0) {
+    if (user.name.localeCompare('none') === 0) {
       return(<Dialog title="Log in to vote!" ref="billDialog"
              autoDetectWindowHeight={true} autoScrollBodyContent={true}
              open={billModalOpen} onRequestClose={this._toggleBillModal}>
                <div>
                  <TextField hintText="" fullWidth={true} type="text"
-                            floatingLabelText="Email or Username" ref="user"
+                            floatingLabelText="Email or Username" ref="username"
                             onEnterKeyDown={this._submitHandler} />
 
                  <TextField hintText="" fullWidth={true} type="password"
@@ -105,7 +113,7 @@ function mapStateToProps(state) {
 }
 
 function _submitVote(user, billId, vote) {
-  if (user.localeCompare('none') === 0) {
+  if (user.name.localeCompare('none') === 0) {
     store.dispatch(toggleBillModal());
   } else {
     store.dispatch(submitVote(user, billId, vote));

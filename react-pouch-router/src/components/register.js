@@ -1,6 +1,7 @@
 'use strict';
 
 import { registerUser } from '../redux/actions';
+import { connect } from 'react-redux';
 import store from '../redux/store';
 import MUI from 'material-ui';
 import React from 'react';
@@ -10,7 +11,10 @@ const {
   TextField
 } = MUI;
 
-export default React.createClass({
+let Register = React.createClass({
+  propTypes: {
+    user: React.PropTypes.object
+  },
   _submitHandler() {
     let { user, pass, confirm } = this.refs;
     if (user.getValue().localeCompare('') === 0) {
@@ -59,3 +63,11 @@ export default React.createClass({
     );
   }
 });
+
+export default connect(mapStateToProps)(Register);
+
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}

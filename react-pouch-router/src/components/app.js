@@ -22,7 +22,7 @@ let App = React.createClass({
   propTypes: {
     children: React.PropTypes.object,
     greeting: React.PropTypes.string,
-    user: React.PropTypes.string,
+    user: React.PropTypes.object,
     history: React.PropTypes.object,
     location: React.PropTypes.object
   },

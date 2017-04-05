@@ -9,7 +9,7 @@ const { Tabs, Tab } = MUI;
 let NavBar = React.createClass({
   propTypes: {
     history: React.PropTypes.object,
-    user: React.PropTypes.string,
+    user: React.PropTypes.object,
     pathname: React.PropTypes.string
   },
 
@@ -21,7 +21,7 @@ let NavBar = React.createClass({
   },
   createAccountNav() {
     let { user } = this.props;
-    if (!user || user.localeCompare('none') === 0) {
+    if (!user || user.name.localeCompare('none') === 0) {
       return(<Tab label="Login" route="/login" value="/login"
                onActive={this._handleTabActive} />
       );

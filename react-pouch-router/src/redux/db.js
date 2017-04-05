@@ -2,7 +2,7 @@
 
 import store from './store';
 import PouchDB from 'pouchdb';
-import { fetchBills, fetchPersonalInfo } from './actions';
+import { fetchBills } from './actions';
 
 let db = new PouchDB('http://localhost:5984/users');
 let billsDB = new PouchDB('http://localhost:5984/bills');
@@ -31,7 +31,6 @@ votesDB.changes({
 
 function changeCallback() {
   store.dispatch(fetchBills());
-  store.dispatch(fetchPersonalInfo());
 }
 
 export default db;

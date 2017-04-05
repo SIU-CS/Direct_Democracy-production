@@ -1,7 +1,8 @@
 'use strict';
 
 // import { registerUser } from '../redux/actions';
-import { logInUser } from '../redux/actions';
+import { userLogin } from '../redux/actions';
+import { connect } from 'react-redux';
 import store from '../redux/store';
 import MUI from 'material-ui';
 import React from 'react';
@@ -12,24 +13,28 @@ const {
   TextField
 } = MUI;
 
-export default React.createClass({
+let Login = React.createClass({
+  propTypes: {
+    user: React.PropTypes.object
+  },
   _submitHandler() {
-    let { user, pass } = this.refs;
+    let { user } = this.props;
+    let { username, pass } = this.refs;
 
-    if (user.getValue().localeCompare('') === 0) {
-        // console.log('user');
-        return;
+    if (username.getValue().localeCompare('') === 0) {
+      // console.log('user');
+      return;
     }
     if (pass.getValue().localeCompare('') === 0) {
-        // console.log('pass');
-        return;
+      // console.log('pass');
+      return;
     }
-
+    user.name = username.getValue();
     store.dispatch(
-      logInUser(user.getValue(), pass.getValue())
+        userLogin(user, pass.getValue())
     );
 
-    user.clearValue();
+    username.clearValue();
     pass.clearValue();
   },
 
@@ -39,7 +44,7 @@ export default React.createClass({
         <h3>Login</h3>
 
         <TextField hintText="" fullWidth={true} type="text"
-                   floatingLabelText="Email or Username" ref="user"
+                   floatingLabelText="Email or Username" ref="username"
                    onEnterKeyDown={this._submitHandler} />
 
         <TextField hintText="" fullWidth={true} type="password"
@@ -54,3 +59,11 @@ export default React.createClass({
     );
   }
 });
+
+export default connect(mapStateToProps)(Login);
+
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
