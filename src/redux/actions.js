@@ -27,8 +27,10 @@ export function logInUserAction(name) {
   return { type: AUTHENTICATED, name: name };
 }
 
-// export function userLogin(user, pass) {
 export function userLogin(user) {
+    // something like this?
+    //
+    // export function registerUser(name, pass) {
     //     return db.put({
     //         _id: generateId(),
     //         name: name,
@@ -41,9 +43,6 @@ export function userLogin(user) {
     //         throw err;
     //     });
     // }
-    db.get(user).then(function (doc) {
-        console.log(doc);
-    });
   return {
     type: 'USER_LOGIN',
     user

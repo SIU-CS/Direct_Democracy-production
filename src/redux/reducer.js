@@ -3,7 +3,7 @@
 let initialState = {
   greeting: 'Direct Democracy',
   // need id to get returned to after successful user login
-  user: {name: 'none'},
+  user: {_id: 10, name: 'none'},
   selectedBill: {title: 'none'},
   billModalOpen: false
 };
