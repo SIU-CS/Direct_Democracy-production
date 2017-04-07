@@ -1,13 +1,13 @@
-// Pending Legislation TEXT 
+// Pending Legislation TEXT SJ 34
 
 var request = require('request');
 var cheerio = require('cheerio');
 
-request('https://www.congress.gov/bill/115th-congress/senate-joint-resolution/34/text', function (error, response, html) {
+request('https://www.congress.gov/bill/115th-congress/senate-joint-resolution/34/text?format=txt', function (error, response, html) {
   if (!error && response.statusCode == 200) {
     var $ = cheerio.load(html);
     var parsedResults = [];
-    $('table.lbexGeneralStyle100').each(function(i, element){
+    $('pre.id.billTextContainer').each(function(i, element){
   // Select the previous element
       var a = $(this).next();
       // Get the rank by parsing the element two levels above the "a" element
