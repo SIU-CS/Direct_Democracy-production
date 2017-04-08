@@ -7,7 +7,8 @@ request('https://www.whitehouse.gov/briefing-room/pending-legislation', function
   if (!error && response.statusCode == 200) {
     var $ = cheerio.load(html);
     var parsedResults = [];
-    $('div.panel-pane.pane-node-title').each(function(i, element){
+    $('div.views-field.views-field-field-signed-date').each(function(i, element){
+    //$('panel-pane.pane-entity-field.pane-node-field-forall-summary').each(function(i, element){
   // Select the previous element
       var a = $(this).next();
       // Get the rank by parsing the element two levels above the "a" element
@@ -16,17 +17,20 @@ var rank = a.text();
   // Parse the link title
       var title = a.text();
       // Parse the href attribute from the "a" element
-      var url = a.attr('href');
+      var url = a.attr('a.href');
       // Get the subtext children from the next row in the HTML table.
-      var subtext = a.parent().parent().next().children('.subtext').children();
+      var text = a.attr('/p');
+      var subtext = a.parent().next().children('.subtext').children();
       // Extract the relevant data from the children
       var points = $(subtext).eq(0).text();
       var username = $(subtext).eq(1).text();
       var comments = $(subtext).eq(2).text();
+
       // Our parsed meta data object
       var metadata = {
         rank: parseInt(rank),
         title: title,
+        text: text,
          url: url,
 
     //    points: parseInt(points),
@@ -38,5 +42,5 @@ var rank = a.text();
     });
     // Log our finished parse results in the terminal
     console.log(parsedResults);
-  }
+}
 });
