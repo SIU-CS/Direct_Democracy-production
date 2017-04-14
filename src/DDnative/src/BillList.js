@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {ListView, StyleSheet, View, Button} from 'react-native';
+import {ListView, StyleSheet, View, Button, Text} from 'react-native';
 
 const onButtonPress = () => {
 	
