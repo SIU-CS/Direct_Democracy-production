@@ -32,7 +32,7 @@ let BillList = React.createClass({
       return 'Oops! Looks like there\'s nothing here!';
     }
     return bill.map(function (item) {
-      return(<button key={item._id} type="button" className="list-group-item"
+      return(<button key={item._id} type="button" className="list-group-item-action"
              onClick={()=>selectedBill(item)} >
                {item.title}
              </button>);
