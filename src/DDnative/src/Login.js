@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {TouchableHighlight, TextInput, StyleSheet, Text, View} from 'react-native';
 import ResponsiveImage from 'react-native-responsive-image';
