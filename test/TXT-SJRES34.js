@@ -3,11 +3,11 @@
 var request = require('request');
 var cheerio = require('cheerio');
 
-request('https://www.congress.gov/bill/115th-congress/senate-joint-resolution/34/text?format=txt', function (error, response, html) {
+request('https://www.congress.gov/bill/115th-congress/senate-joint-resolution/34/text', function (error, response, html) {
   if (!error && response.statusCode == 200) {
     var $ = cheerio.load(html);
     var parsedResults = [];
-    $('pre.id.billTextContainer').each(function(i, element){
+    $('table.lbexGeneralStyle100').each(function(i, element){
   // Select the previous element
       var a = $(this).next();
       // Get the rank by parsing the element two levels above the "a" element
@@ -22,7 +22,7 @@ var rank = a.text();
       // Extract the relevant data from the children
       var points = $(subtext).eq(0).text();
       var username = $(subtext).eq(1).text();
-      var comments = $(subtext).eq(2).text();
+    //  var comments = $(subtext).eq(2).text();
       // Our parsed meta data object
       var metadata = {
         rank: parseInt(rank),
@@ -31,7 +31,7 @@ var rank = a.text();
 
     //    points: parseInt(points),
     //    username: username,
-      comments: parseInt(comments)
+    //  comments: parseInt(comments)
       };
       // Push meta-data into parsedResults array
       parsedResults.push(metadata);

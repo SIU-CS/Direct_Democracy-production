@@ -1,4 +1,4 @@
-//Current HR 1228 TEXT Pending 
+//Current HR 1228 TEXT Pending
 
 var request = require('request');
 var cheerio = require('cheerio');
@@ -16,7 +16,7 @@ var rank = a.text();
   // Parse the link title
       var title = a.text();
       // Parse the href attribute from the "a" element
-      var url = a.attr('href');
+  //   var url = a.html('h3')
       // Get the subtext children from the next row in the HTML table.
       var subtext = a.parent().parent().next().children('.subtext').children();
       // Extract the relevant data from the children
@@ -27,11 +27,11 @@ var rank = a.text();
       var metadata = {
         rank: parseInt(rank),
         title: title,
-         url: url,
+  //     url: url,
 
     //    points: parseInt(points),
     //    username: username,
-      comments: parseInt(comments)
+    //  comments: parseInt(comments)
       };
       // Push meta-data into parsedResults array
       parsedResults.push(metadata);
