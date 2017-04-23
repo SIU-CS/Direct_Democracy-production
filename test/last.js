@@ -3,11 +3,11 @@
 var request = require('request');
 var cheerio = require('cheerio');
 
-request('https://www.whitehouse.gov/legislation/sjres-35-joint-resolution-providing-appointment-michael-govan-citizen-regent-board', function (error, response, html) {
+request('https://www.whitehouse.gov/legislation/sjres-36-joint-resolution-providing-appointment-roger-w-ferguson-citizen-regent-board', function (error, response, html) {
   if (!error && response.statusCode == 200) {
     var $ = cheerio.load(html);
     var parsedResults = [];
-    $('div.panel-panel.panel-col.panel-col-section-content-first').each(function(i, element){
+    $('div.panel-pane.pane-entity-field.pane-node-field-forall-summary').each(function(i, element){
     //$('panel-pane.pane-entity-field.pane-node-field-forall-summary').each(function(i, element){
   // Select the previous element
       var a = $(this).next();
@@ -17,7 +17,7 @@ var rank = a.text();
   // Parse the link title
       var title = a.text();
       // Parse the href attribute from the "a" element
-      var url = a.attr('a.href');
+    var url = a.html();
       // Get the subtext children from the next row in the HTML table.
       var text = a.attr('/p');
       var subtext = a.parent().next().children('.subtext').children();
