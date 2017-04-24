@@ -1,21 +1,30 @@
 'use strict';
 
-// import { registerUser } from '../redux/actions';
 import { userLogin } from '../redux/actions';
 import { connect } from 'react-redux';
+import Register from './register';
 import store from '../redux/store';
 import MUI from 'material-ui';
 import React from 'react';
 import css from '../styles/app';
+import { toggleBillModal } from '../redux/actions';
 
 const {
+  Dialog,
   RaisedButton,
   TextField
 } = MUI;
 
 let Login = React.createClass({
   propTypes: {
-    user: React.PropTypes.object
+    user: React.PropTypes.object,
+    billModalOpen: React.PropTypes.oneOfType([
+      React.PropTypes.func,
+      React.PropTypes.bool
+    ])
+  },
+  _toggleBillModal() {
+    store.dispatch(toggleBillModal());
   },
   _submitHandler() {
     let { user } = this.props;
@@ -31,16 +40,25 @@ let Login = React.createClass({
     }
     user.name = username.getValue();
     store.dispatch(
-        userLogin(user, pass.getValue())
+      userLogin(user, pass.getValue())
     );
 
     username.clearValue();
     pass.clearValue();
   },
-
+  createDialog() {
+    let { billModalOpen } = this.props;
+    return(<Dialog title="Create Your Account" ref="registerDialog"
+             autoDetectWindowHeight={true} autoScrollBodyContent={true}
+             open={billModalOpen} onRequestClose={this._toggleBillModal}>
+               <Register/>
+             </Dialog>
+           );
+  },
   render() {
     return (
-      <div>
+      <span>
+        {this.createDialog()}
         <h3>Login</h3>
 
         <TextField hintText="" fullWidth={true} type="text"
@@ -52,10 +70,11 @@ let Login = React.createClass({
                    onEnterKeyDown={this._submitHandler} />
 
         <RaisedButton label="Login" secondary={true} onClick={this._submitHandler} />
+
         <div style={css.registerText}>
-            <a href="/#/register">Not a user? Register here!</a>
+          <a onClick={this._toggleBillModal} >  Not a User? Register Here! </a>
         </div>
-      </div>
+      </span>
     );
   }
 });
@@ -64,6 +83,7 @@ export default connect(mapStateToProps)(Login);
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user,
+    billModalOpen: state.billModalOpen
   };
 }
