@@ -28,6 +28,16 @@ export function logInUserAction(name) {
 }
 
 export function userLogin(user) {
+db.find({
+  selector: {name: 'rania'},
+  fields: ['_id', 'name'],
+  sort: ['name']
+}).then(function (result) {
+  // handle result
+  console.log("AAAA" + result)
+}).catch(function (err) {
+  console.log(err);
+});
     // something like this?
     //
     // export function registerUser(name, pass) {
