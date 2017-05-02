@@ -1,8 +1,7 @@
 //Working are you//
-
 var request = require('request');
 var cheerio = require('cheerio');
-
+// Push to Data Base //
 request('https://www.whitehouse.gov/briefing-room/signed-legislation', function (error, response, html) {
   if (!error && response.statusCode == 200) {
     var $ = cheerio.load(html);

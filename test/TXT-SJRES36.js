@@ -1,9 +1,9 @@
 // Pending Legislation TEXT SJ 34
-
+// Push to Data Base //
 var request = require('request');
 var cheerio = require('cheerio');
 
-request('https://www.congress.gov/bill/115th-congress/senate-joint-resolution/35/text', function (error, response, html) {
+request('https://www.congress.gov/bill/115th-congress/senate-joint-resolution/36/text', function (error, response, html) {
   if (!error && response.statusCode == 200) {
     var $ = cheerio.load(html);
     var parsedResults = [];
