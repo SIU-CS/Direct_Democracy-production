@@ -40,7 +40,7 @@ let Login = React.createClass({
     }
     user.name = username.getValue();
     store.dispatch(
-      userLogin(user, pass.getValue())
+      userLogin(user.name, pass.getValue())
     );
 
     username.clearValue();

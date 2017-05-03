@@ -59,6 +59,7 @@
     "webpack-dev-server": "^1.12.0"
   },
   "dependencies": {
+    "pouchdb-authentication": "^0.5.5",
     "pouchdb-find": "^6.2.0"
   }
 }

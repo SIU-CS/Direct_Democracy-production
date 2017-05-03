@@ -26,15 +26,17 @@ export function logInUserAction(name) {
   return { type: AUTHENTICATED, name: name };
 }
 
-export function userLogin(user) {
-db.find({
-	selector: {name: {$eq: user}}
-}).then(function (result) {
-  // handle result
-  console.log(result);
-}).catch(function (err) {
-  console.log(err);
-});
+export function userLogin(name, pass) {
+	db.login(name, pass, function (err, response) {
+	if (err) {
+	if (err.name === 'unauthorized') {
+		console.log("unauthorized");
+	} else {
+		console.log("an error we couldn't define. Probably cosmic rays.");
+	}
+	}
+	console.log(response);
+	});
 }
 
 export function setGreeting(greeting) {
@@ -88,17 +90,18 @@ export function selectBill(selectedBill) {
 }
 
 export function registerUser(name, pass) {
-  return db.put({
-    _id: generateId(),
-    name: name,
-    pass: pass
-  }).then(() => {
-    return {
-      type: 'REGISTER_USER'
-    };
-  }).catch(err => {
-    throw err;
-  });
+db.signup(name, pass, function (err, response) {
+  if (err) {
+    if (err.name === 'conflict') {
+      console.log("conflict");
+    } else if (err.name === 'forbidden') {
+      console.log("forbidden");
+    } else {
+      console.log("http error");
+    }
+  }else{
+  console.log(response);}
+});
 }
 
 export function logInUser(name, pass) {

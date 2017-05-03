@@ -5,6 +5,7 @@ import PouchDB from 'pouchdb';
 import { fetchBills } from './actions';
 
 PouchDB.plugin(require('pouchdb-find'));
+PouchDB.plugin(require('pouchdb-authentication'));
 
 let db = new PouchDB('http://localhost:5984/users');
 let billsDB = new PouchDB('http://localhost:5984/bills');
