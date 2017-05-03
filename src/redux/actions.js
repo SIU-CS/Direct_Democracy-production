@@ -39,6 +39,15 @@ export function userLogin(name, pass) {
 	});
 }
 
+export function getVotes(name,bill){
+votesDB.find({
+  selector: {billID: bill},
+  fields: ['billID']
+}, function (err, result) {
+  if (err) { return console.log(err); }
+  console.log(result); //this is an array of the bills selected
+});
+}
 
 export function userChangePWD(name, pwd){
 	db.changePassword(name, pwd, function(err, response) {
@@ -115,7 +124,7 @@ export function submitVote(user, bill, preference) {
     return {
       type: 'SUBMIT_VOTE'
     };
-  }).catch(err => {
+  }).catch(err => { 
     throw err;
   });
 }

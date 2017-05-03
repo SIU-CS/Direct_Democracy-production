@@ -6,7 +6,7 @@ import store from '../redux/store';
 import css from '../styles/app';
 import MUI from 'material-ui';
 import { connect } from 'react-redux';
-import { submitVote, toggleBillModal } from '../redux/actions';
+import { submitVote, toggleBillModal, getVotes } from '../redux/actions';
 
 const { Dialog, TextField, RaisedButton } = MUI;
 
@@ -97,6 +97,8 @@ let VoteButtons = React.createClass({
           onClick={()=>_submitVote(user, selectedBill._id, 1)} />
         <RaisedButton label="Against" primary={true} style={css.button}
           onClick={()=>_submitVote(user, selectedBill._id, 0)} />
+		<RaisedButton label="See Graph" primary={true} style={css.button}
+          onClick={()=>getVotes(user, selectedBill._id)} />
       </div>
     );
   }
