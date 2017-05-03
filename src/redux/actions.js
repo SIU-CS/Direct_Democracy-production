@@ -27,48 +27,52 @@ export function logInUserAction(name) {
 }
 
 export function userLogin(name, pass) {
-	db.login(name, pass, function (err, response) {
-	if (err) {
-	if (err.name === 'unauthorized') {
-		console.log("Username or password incorrect.");
-	} else {
-		console.log("an error we couldn't define. Probably cosmic rays.");
-	}
-	}else{
-	console.log(response);}
-	});
-}
-
-export function getVotes(name,bill){
-votesDB.find({
-  selector: {billID: bill},
-  fields: ['billID']
-}, function (err, result) {
-  if (err) { return console.log(err); }
-  console.log(result); //this is an array of the bills selected
-});
-}
-
-export function userChangePWD(name, pwd){
-	db.changePassword(name, pwd, function(err, response) {
-  if (err) {
-    if (err.name === 'not_found') {
-    // typo, or you don't have the privileges to see this user
-	console.log("Typo or non priviledged to do so.");
+  db.login(name, pass, function (err, response) {
+    if (err) {
+      if (err.name === 'unauthorized') {
+        console.log('Username or password incorrect.');
+      } else {
+        console.log('an error we couldn\'t define. Probably cosmic rays.');
+      }
     } else {
-    // some other error
-	console.log("error I cant define.");
+      console.log(response);
     }
-  } else {
-	console.log(response);
+  });
+}
+
+export function getVotes(name, bill) {
+  votesDB.find({
+    selector: {billID: bill},
+    fields: ['billID']
+  }, function (err, result) {
+    if (err) {
+      return console.log(err);
+    }
+    console.log(result);
+    // this is an array of the bills selected
+  });
+}
+
+export function userChangePWD(name, pwd) {
+  db.changePassword(name, pwd, function (err, response) {
+    if (err) {
+      if (err.name === 'not_found') {
+        // typo, or you don't have the privileges to see this user
+        console.log('Typo or non priviledged to do so.');
+      } else {
+        // some other error
+        console.log('error I cant define.');
+      }
+    } else {
+      console.log(response);
     // response is the user update response
     // {
-    //   "ok": true,
-    //   "id": "org.couchdb.user:spiderman",
-    //   "rev": "2-09310a62dcc7eea42bf3d4f67e8ff8c4"
+    //   'ok': true,
+    //   'id': 'org.couchdb.user:spiderman',
+    //   'rev': '2-09310a62dcc7eea42bf3d4f67e8ff8c4'
     // }
-  }
-})
+    }
+  });
 }
 
 export function setGreeting(greeting) {
@@ -99,19 +103,19 @@ export function fetchBills() {
   });
 }
 
-export function acquireUserInfo(user){
-	db.getUser(user, function (err, response) {
-  if (err) {
-    if (err.name === 'not_found') {
-      console.log("typo?");
+export function acquireUserInfo(user) {
+  db.getUser(user, function (err, response) {
+    if (err) {
+      if (err.name === 'not_found') {
+        console.log('typo?');
+      } else {
+        console.log('error I cant define atm.');
+      }
     } else {
-      console.log("error I cant define atm.");
+      // response is the user object
+      console.log(response._id);
     }
-  } else {
-    // response is the user object
-	console.log(response._id);
-  }
-});
+  });
 }
 
 export function submitVote(user, bill, preference) {
@@ -124,7 +128,7 @@ export function submitVote(user, bill, preference) {
     return {
       type: 'SUBMIT_VOTE'
     };
-  }).catch(err => { 
+  }).catch(err => {
     throw err;
   });
 }
@@ -137,18 +141,19 @@ export function selectBill(selectedBill) {
 }
 
 export function registerUser(name, pass) {
-db.signup(name, pass, function (err, response) {
-  if (err) {
-    if (err.name === 'conflict') {
-      console.log("conflict");
-    } else if (err.name === 'forbidden') {
-      console.log("forbidden");
+  db.signup(name, pass, function (err, response) {
+    if (err) {
+      if (err.name === 'conflict') {
+        console.log('conflict');
+      } else if (err.name === 'forbidden') {
+        console.log('forbidden');
+      } else {
+        console.log('http error');
+      }
     } else {
-      console.log("http error");
+      console.log(response);
     }
-  }else{
-  console.log(response);}
-});
+  });
 }
 
 export function logInUser(name, pass) {
@@ -174,5 +179,3 @@ function mapDocsFromPouch(records) {
 function generateId() {
   return crypto.randomBytes(16).toString('hex');
 }
-
-

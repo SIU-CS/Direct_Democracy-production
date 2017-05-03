@@ -9,16 +9,16 @@ import store from '../redux/store';
 import { userChangePWD } from '../redux/actions';
 import MUI from 'material-ui';
 
- const {
-   RaisedButton,
-   TextField
- } = MUI;
+const {
+  RaisedButton,
+  TextField
+} = MUI;
 
 let Account = React.createClass({
   propTypes: {
     user: React.PropTypes.object
   },
- _submitHandler() {
+  _submitHandler() {
     let { user } = this.props;
     let { username, pass } = this.refs;
 
@@ -29,13 +29,13 @@ let Account = React.createClass({
     username.clearValue();
     pass.clearValue();
   },
-  
+
   render() {
     let { user } = this.props;
     return (
       <div>
         <h3>Welcome {user.name}!</h3>
-		
+
 
         <TextField hintText="" fullWidth={true} type="password"
                    floatingLabelText="Change password" ref="pass"
