@@ -6,7 +6,6 @@ import { billsDB } from './db';
 import { votesDB } from './db';
 import { routeActions } from 'react-router-redux';
 
-
 export const ERROR = 'ERROR';
 export const AUTHENTICATION_STATE = {
   AUTHENTICATED: 'AUTHENTICATED',
@@ -29,34 +28,13 @@ export function logInUserAction(name) {
 
 export function userLogin(user) {
 db.find({
-  selector: {name: 'rania'},
-  fields: ['_id', 'name'],
-  sort: ['name']
+	selector: {name: {$eq: user}}
 }).then(function (result) {
   // handle result
-  console.log("AAAA" + result)
+  console.log(result);
 }).catch(function (err) {
   console.log(err);
 });
-    // something like this?
-    //
-    // export function registerUser(name, pass) {
-    //     return db.put({
-    //         _id: generateId(),
-    //         name: name,
-    //         pass: pass
-    //     }).then(() => {
-    //         return {
-    //             type: 'REGISTER_USER'
-    //         };
-    //     }).catch(err => {
-    //         throw err;
-    //     });
-    // }
-  return {
-    type: 'USER_LOGIN',
-    user
-  };
 }
 
 export function setGreeting(greeting) {
