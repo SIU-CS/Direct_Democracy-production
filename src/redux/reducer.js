@@ -35,6 +35,11 @@ export default (state=initialState, action) => {
       ...state,
       bill: action.bill
     };
+  case 'FETCH_VOTES':
+    return {
+      ...state,
+      vote: action.vote
+    };
   case 'DOC_SEARCH':
     return {
       ...state,

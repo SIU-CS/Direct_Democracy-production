@@ -5,9 +5,10 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import store from '../redux/store';
 import MUI from 'material-ui';
 import NavBar from './nav-bar';
+import VoteGraph from './vote-graph';
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchBills } from '../redux/actions';
+import { fetchBills, fetchVotes } from '../redux/actions';
 
 const {
   Card,
@@ -23,6 +24,8 @@ let App = React.createClass({
     children: React.PropTypes.object,
     greeting: React.PropTypes.string,
     user: React.PropTypes.object,
+	vote: React.PropTypes.array,
+
     history: React.PropTypes.object,
     location: React.PropTypes.object
   },
@@ -39,10 +42,11 @@ let App = React.createClass({
 
   componentDidMount() {
     store.dispatch(fetchBills());
-  },
+    store.dispatch(fetchVotes());
+},
 
   render() {
-    let { greeting, user, history, location } = this.props;
+    let { greeting, user, history, location, vote } = this.props;
 
     return (
       <div>
@@ -53,6 +57,7 @@ let App = React.createClass({
 
           <div>
             {this.props.children}
+			<VoteGraph vote={vote} />
           </div>
         </Card>
       </div>
@@ -66,6 +71,7 @@ function mapStateToProps(state) {
   return {
     greeting: state.greeting,
     billSelected: state.billSelected,
-    bill: state.bill
+    bill: state.bill,
+	vote: state.vote
   };
 }

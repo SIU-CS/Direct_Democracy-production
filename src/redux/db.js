@@ -2,7 +2,7 @@
 
 import store from './store';
 import PouchDB from 'pouchdb';
-import { fetchBills } from './actions';
+import { fetchBills, fetchVotes } from './actions';
 
 PouchDB.plugin(require('pouchdb-find'));
 PouchDB.plugin(require('pouchdb-authentication'));
@@ -34,6 +34,7 @@ votesDB.changes({
 
 function changeCallback() {
   store.dispatch(fetchBills());
+  store.dispatch(fetchVotes());
 }
 
 export default db;

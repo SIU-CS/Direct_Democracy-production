@@ -136,6 +136,20 @@ export function fetchBills() {
   });
 }
 
+export function fetchVotes() {
+  return votesDB.allDocs({
+    include_docs: true // eslint-disable-line camelcase
+  }).then(vote => {
+    return {
+      type: 'FETCH_VOTES',
+      vote: mapDocsFromPouch(vote)
+    };
+  }).catch(err => {
+    throw err;
+  });
+}
+
+
 export function acquireUserInfo(user) {
   db.getUser(user, function (err, response) {
     if (err) {

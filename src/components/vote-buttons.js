@@ -6,7 +6,8 @@ import store from '../redux/store';
 import css from '../styles/app';
 import MUI from 'material-ui';
 import { connect } from 'react-redux';
-import { submitVote, toggleBillModal, getVotes, demographicVotes } from '../redux/actions';
+import { submitVote, toggleBillModal,
+  getVotes, demographicVotes, fetchVotes } from '../redux/actions';
 
 const { Dialog, TextField, RaisedButton } = MUI;
 
@@ -14,6 +15,7 @@ let VoteButtons = React.createClass({
   propTypes: {
     selectedBill: React.PropTypes.object,
     user: React.PropTypes.object,
+    vote: React.PropTypes.array,
     billModalOpen: React.PropTypes.oneOfType([
       React.PropTypes.func,
       React.PropTypes.bool
@@ -51,6 +53,7 @@ let VoteButtons = React.createClass({
 
   createDialog() {
     let { user, billModalOpen } = this.props;
+
     if (user.name.localeCompare('none') === 0) {
       return(<Dialog title="Log in to vote!" ref="billDialog"
              autoDetectWindowHeight={true} autoScrollBodyContent={true}
@@ -79,9 +82,13 @@ let VoteButtons = React.createClass({
     // );
   },
 
+  componentDidMount() {
+    store.dispatch(fetchVotes());
+  },
+
 
   render() {
-    let { selectedBill, user } = this.props;
+    let { selectedBill, user, vote } = this.props;
 
     if (selectedBill.title.localeCompare('none') === 0) {
       return (<div className='Bill'>
@@ -89,6 +96,9 @@ let VoteButtons = React.createClass({
               </div>
       );
     }
+    for (let i = 0; i < 15; i = i + 1) {
+	console.log(vote[i]);
+	}
     return (
       <div className='VoteButtons'>
             {this.createDialog()}
@@ -112,6 +122,7 @@ function mapStateToProps(state) {
   return {
     selectedBill: state.selectedBill,
     user: state.user,
+	vote: state.vote,
     billModalOpen: state.billModalOpen
   };
 }
