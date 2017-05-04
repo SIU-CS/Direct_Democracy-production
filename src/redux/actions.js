@@ -160,9 +160,19 @@ export function selectBill(selectedBill) {
     selectedBill
   };
 }
-
-export function registerUser(name, pass) {
-  db.signup(name, pass, function (err, response) {
+export function registerUser(name, pass, uGender, uRace, 
+uAge, uMoney, uMarriage, uEdu, uEmployment, uState) {
+  db.signup(name, pass, {metadata : {
+    gender : uGender,
+    race : uRace,
+    age : uAge,
+	money : uMoney,
+	marriage : uMarriage,
+	edu : uEdu,
+	employment : uEmployment,
+	state : uState
+	}
+  },function (err, response) {
     if (err) {
       if (err.name === 'conflict') {
         console.log('conflict');
