@@ -43,8 +43,10 @@ let Account = React.createClass({
                    onEnterKeyDown={this._submitHandler} />
         <RaisedButton label="Submit changes" secondary={true} onClick={this._submitHandler} />
 		
-		<RaisedButton label="See past votes" primary={true} style={css.button}
+		<RaisedButton label="See your past votes" primary={true} style={css.button}
           onClick={()=>getUsersVotes(user)} />
+		  
+
       </div>
     );
   }

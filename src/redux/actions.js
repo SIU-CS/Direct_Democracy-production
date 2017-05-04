@@ -109,6 +109,18 @@ export function toggleBillModal() {
   };
 }
 
+export function demographicVotes(bill){
+	votesDB.find({
+    selector: {billID : bill},
+    fields: ['vote', 'userID']
+  }, function (err, result) {
+    if (err) {
+      return console.log(err);
+    }
+    console.log(result);
+  });
+}
+
 //  change to fetch votes for user after login
 //  export function fetchBills(user) {
 export function fetchBills() {
