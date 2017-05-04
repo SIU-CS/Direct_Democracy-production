@@ -1,0 +1,27 @@
+{
+  "name": "jess",
+  "version": "1.0.0",
+  "description": "A basic chai mocha setep",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jesseskinner/chai-mocha-basics.git"
+  },
+  "keywords": [
+    "mocha",
+    "chai"
+  ],
+  "author": "ag_dubs <wombat@npmjs.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jesseskinner/chai-mocha-basics/issues"
+  },
+  "homepage": "https://github.com/jesseskinner/chai-mocha-basics#readme",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.3.0"
+  }
+}
