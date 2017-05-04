@@ -30,7 +30,7 @@ let Bill = React.createClass({
           {selectedBill.title}
         </h3>
         <p>
-          {selectedBill.billText}
+          {selectedBill.text}
         </p>
 
         <VoteButtons user={user} selectedBill={selectedBill} />
