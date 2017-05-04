@@ -52,13 +52,25 @@ export function userLogout() {
 export function getVotes(name, bill) {
   votesDB.find({
     selector: {billID: bill},
-    fields: ['billID']
+    fields: ['billID', 'preference']
   }, function (err, result) {
     if (err) {
       return console.log(err);
     }
     console.log(result);
     // this is an array of the bills selected
+  });
+}
+
+export function getUsersVotes(user){
+	votesDB.find({
+    selector: {userID: user}
+  }, function (err, result) {
+    if (err) {
+      return console.log(err);
+    }
+    console.log(result);
+    // this is an array of the user's votes selected
   });
 }
 

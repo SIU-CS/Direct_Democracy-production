@@ -6,7 +6,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import store from '../redux/store';
-import { userChangePWD } from '../redux/actions';
+import css from '../styles/app';
+import { userChangePWD, getUsersVotes } from '../redux/actions';
 import MUI from 'material-ui';
 
 const {
@@ -41,6 +42,9 @@ let Account = React.createClass({
                    floatingLabelText="Change password" ref="pass"
                    onEnterKeyDown={this._submitHandler} />
         <RaisedButton label="Submit changes" secondary={true} onClick={this._submitHandler} />
+		
+		<RaisedButton label="See past votes" primary={true} style={css.button}
+          onClick={()=>getUsersVotes(user)} />
       </div>
     );
   }
