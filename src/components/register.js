@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import store from '../redux/store';
 import MUI from 'material-ui';
 import React from 'react';
+import { toggleBillModal } from '../redux/actions';
 
 const {
   RaisedButton,
@@ -13,10 +14,15 @@ const {
 
 let Register = React.createClass({
   propTypes: {
-    user: React.PropTypes.object
+    user: React.PropTypes.object,
+    billModalOpen: React.PropTypes.oneOfType([
+      React.PropTypes.func,
+      React.PropTypes.bool
+    ])
   },
   _submitHandler() {
     let { user, pass, confirm } = this.refs;
+
     if (user.getValue().localeCompare('') === 0) {
       // console.log('user');
       return;
@@ -32,12 +38,25 @@ let Register = React.createClass({
 
     if (pass.getValue().localeCompare(confirm.getValue()) === 0) {
       store.dispatch(
-        registerUser(user.getValue(), pass.getValue())
+        registerUser(
+            user.getValue(),
+            pass.getValue(),
+            document.demo.politics.value,
+            document.demo.gender.value,
+            document.demo.race.value,
+            document.demo.age.value,
+            document.demo.money.value,
+            document.demo.marriage.value,
+            document.demo.edu.value,
+            document.demo.employment.value,
+            document.demo.state.value
+        )
       );
 
       user.clearValue();
       pass.clearValue();
       confirm.clearValue();
+      store.dispatch(toggleBillModal());
     }
   },
 
@@ -60,57 +79,57 @@ let Register = React.createClass({
             <br/>
             <br/>
 
-        <form className="form-horizontal">
+        <form id="demo" name='demo' className="form-horizontal">
           <fieldset>
             <legend>Demographic Survey</legend>
             <span>
               This is confidential and will only be used for group representation.
               None of this will be traced back to you directly.
             </span>
-            <div className="form-group">
-            <label className="col-md-4 control-label" htmlFor="politics-radios">
+            <div className="form-group" name='politics'>
+            <label className="col-md-4 control-label" htmlFor="politics">
               Political Affiliation
             </label>
               <div className="col-md-4">
                 <div className="radio">
-                  <label htmlFor="politics-radios-0">
-                  <input type="radio" name="politics-radios" id="politics-radios-0" value="1"/>
+                  <label htmlFor="politics-0">
+                  <input type="radio" name="politics" id="politics-0" value="1" defaultChecked/>
                     Democrat
                   </label>
                 </div>
                 <div className="radio">
-                  <label htmlFor="politics-radios-1">
-                  <input type="radio" name="politics-radios" id="politics-radios-1" value="2"/>
+                  <label htmlFor="politics-1">
+                  <input type="radio" name="politics" id="politics-1" value="2"/>
                     Republican
                   </label>
                 </div>
                 <div className="radio">
-                  <label htmlFor="politics-radios-2">
-                  <input type="radio" name="politics-radios" id="politics-radios-2" value="3"/>
+                  <label htmlFor="politics-2">
+                  <input type="radio" name="politics" id="politics-2" value="3"/>
                     Liberal
                   </label>
                 </div>
                 <div className="radio">
-                  <label htmlFor="politics-radios-3">
-                  <input type="radio" name="politics-radios" id="politics-radios-3" value="4"/>
+                  <label htmlFor="politics-3">
+                  <input type="radio" name="politics" id="politics-3" value="4"/>
                     Conservative
                   </label>
                 </div>
                 <div className="radio">
-                  <label htmlFor="politics-radios-4">
-                  <input type="radio" name="politics-radios" id="politics-radios-4" value="5"/>
+                  <label htmlFor="politics-4">
+                  <input type="radio" name="politics" id="politics-4" value="5"/>
                     Green Party
                   </label>
                 </div>
                 <div className="radio">
-                  <label htmlFor="politics-radios-5">
-                  <input type="radio" name="politics-radios" id="politics-radios-5" value="6"/>
+                  <label htmlFor="politics-5">
+                  <input type="radio" name="politics" id="politics-5" value="6"/>
                     Libertarian
                   </label>
                 </div>
                 <div className="radio">
-                  <label htmlFor="politics-radios-6">
-                  <input type="radio" name="politics-radios" id="politics-radios-6" value="7"/>
+                  <label htmlFor="politics-6">
+                  <input type="radio" name="politics" id="politics-6" value="7"/>
                     Independent
                   </label>
                 </div>
@@ -118,69 +137,69 @@ let Register = React.createClass({
             </div>
 
             <div className="form-group">
-              <label className="col-md-4 control-label" htmlFor="gender-radios">Gender</label>
+              <label className="col-md-4 control-label" htmlFor="gender">Gender</label>
               <div className="col-md-4">
                 <div className="radio">
-                  <label htmlFor="gender-radios-0">
-                  <input type="radio" name="gender-radios" id="gender-radios-0" value="1"/>
+                  <label htmlFor="gender-0">
+            <input type="radio" name="gender" id="gender-0" value="1" defaultChecked/>
                     Male
                   </label>
                 </div>
               <div className="radio">
-                <label htmlFor="gender-radios-1">
-                <input type="radio" name="gender-radios" id="gender-radios-1" value="2"/>
+                <label htmlFor="gender-1">
+                <input type="radio" name="gender" id="gender-1" value="2"/>
                   Female
                 </label>
               </div>
               <div className="radio">
-                <label htmlFor="gender-radios-2">
-                  <input type="radio" name="gender-radios" id="gender-radios-2" value="3"/>
+                <label htmlFor="gender-2">
+                  <input type="radio" name="gender" id="gender-2" value="3"/>
                   Non-Binary
                 </label>
               </div>
             </div>
           </div>
 
-          <div className="form-group">
-            <label className="col-md-4 control-label" htmlFor="race-radios">Race</label>
+          <div className="form-group" name='race'>
+            <label className="col-md-4 control-label" htmlFor="race">Race</label>
               <div className="col-md-4">
                 <div className="radio">
-                  <label htmlFor="race-radios-0">
-                  <input type="radio" name="race-radios" id="race-radios-0" value="1"/>
+                  <label htmlFor="race-0">
+            <input type="radio" name="race" id="race-0" value="1" defaultChecked/>
                     Native American or Alaskan Native
                   </label>
                 </div>
               <div className="radio">
-                <label htmlFor="race-radios-1">
-                <input type="radio" name="race-radios" id="race-radios-1" value="2"/>
+                <label htmlFor="race-1">
+                <input type="radio" name="race" id="race-1" value="2"/>
                   Asian American
                 </label>
               </div>
               <div className="radio">
-                <label htmlFor="race-radios-2">
-                <input type="radio" name="race-radios" id="race-radios-2" value="3"/>
+                <label htmlFor="race-2">
+                <input type="radio" name="race" id="race-2" value="3"/>
                   Black or African American
                 </label>
               </div>
               <div className="radio">
-                <label htmlFor="race-radios-3">
-                  <input type="radio" name="race-radios" id="race-radios-3" value="4"/>
+                <label htmlFor="race-3">
+                  <input type="radio" name="race" id="race-3" value="4"/>
                     Native Hawaiian or Other Pacific Islander
                 </label>
               </div>
               <div className="radio">
-                <label htmlFor="race-radios-4">
-                <input type="radio" name="race-radios" id="race-radios-4" value="5"/>
+                <label htmlFor="race-4">
+                <input type="radio" name="race" id="race-4" value="5"/>
                   White or Cauasian
                 </label>
               </div>
             </div>
           </div>
 
-          <div className="form-group">
+          <div className="form-group" name='age'>
             <label className="col-md-4 control-label" htmlFor="selectbasic">Age</label>
               <div className="col-md-4">
-                <select id="selectbasic" name="selectbasic" className="form-control">
+                <select id="selectbasic" name="age" className="form-control">
                   <option value="1">{"<"}18</option>
                   <option value="2">18-25</option>
                   <option value="3">25-34</option>
@@ -192,10 +211,10 @@ let Register = React.createClass({
               </div>
             </div>
 
-          <div className="form-group">
+          <div className="form-group" name='money'>
             <label className="col-md-4 control-label" htmlFor="selectbasic">Household Income</label>
               <div className="col-md-4">
-                <select id="selectbasic" name="selectbasic" className="form-control">
+                <select id="selectbasic" name="money" className="form-control">
                   <option value="1">{"<"}$10,000</option>
                   <option value="2">$10,000 to $30,000</option>
                   <option value="3">$30,001 to $50,000</option>
@@ -210,130 +229,130 @@ let Register = React.createClass({
               </div>
             </div>
 
-            <div className="form-group">
-            <label className="col-md-4 control-label" htmlFor="marriage-radios">
+            <div className="form-group" name='relationship'>
+            <label className="col-md-4 control-label" htmlFor="marriage">
             Marital Status
         </label>
               <div className="col-md-4">
                 <div className="radio">
-                  <label htmlFor="marriage-radios-0">
-                  <input type="radio" name="marriage-radios" id="marriage-radios-0" value="1"/>
+                  <label htmlFor="marriage-0">
+            <input type="radio" name="marriage" id="marriage-0" value="1" defaultChecked/>
                     Married
                   </label>
                 </div>
               <div className="radio">
-                <label htmlFor="marriage-radios-1">
-                <input type="radio" name="marriage-radios" id="marriage-radios-1" value="2"/>
+                <label htmlFor="marriage-1">
+                <input type="radio" name="marriage" id="marriage-1" value="2"/>
                   Widowed
                 </label>
               </div>
               <div className="radio">
-                <label htmlFor="marriage-radios-2">
-                <input type="radio" name="marriage-radios" id="marriage-radios-2" value="3"/>
+                <label htmlFor="marriage-2">
+                <input type="radio" name="marriage" id="marriage-2" value="3"/>
                   Divorced
                 </label>
               </div>
               <div className="radio">
-                <label htmlFor="marriage-radios-3">
-                <input type="radio" name="marriage-radios" id="marriage-radios-3" value="4"/>
+                <label htmlFor="marriage-3">
+                <input type="radio" name="marriage" id="marriage-3" value="4"/>
                   Separated
                 </label>
               </div>
               <div className="radio">
-                <label htmlFor="marriage-radios-4">
-                <input type="radio" name="marriage-radios" id="marriage-radios-4" value="5"/>
+                <label htmlFor="marriage-4">
+                <input type="radio" name="marriage" id="marriage-4" value="5"/>
                   Single
                 </label>
               </div>
             </div>
             </div>
 
-<div className="form-group">
-  <label className="col-md-4 control-label" htmlFor="education-radios"> Education</label>
+<div className="form-group" name='edu'>
+  <label className="col-md-4 control-label" htmlFor="edu"> Education</label>
   <div className="col-md-4">
   <div className="radio">
-    <label htmlFor="education-radios-0">
-      <input type="radio" name="education-radios" id="education-radios-0" value="1"/>
+    <label htmlFor="edu-0">
+            <input type="radio" name="edu" id="edu-0" value="1" defaultChecked/>
       Middle School
     </label>
   </div>
   <div className="radio">
-    <label htmlFor="education-radios-1">
-      <input type="radio" name="education-radios" id="education-radios-1" value="2"/>
+    <label htmlFor="edu-1">
+      <input type="radio" name="edu" id="edu-1" value="2"/>
       High school graduate
     </label>
   </div>
   <div className="radio">
-    <label htmlFor="education-radios-2">
-      <input type="radio" name="education-radios" id="education-radios-2" value="3"/>
+    <label htmlFor="edu-2">
+      <input type="radio" name="edu" id="edu-2" value="3"/>
       Have attended/currently attending college
     </label>
   </div>
   <div className="radio">
-    <label htmlFor="education-radios-3">
-      <input type="radio" name="education-radios" id="education-radios-3" value="4"/>
+    <label htmlFor="edu-3">
+      <input type="radio" name="edu" id="edu-3" value="4"/>
       Associate degree
     </label>
   </div>
   <div className="radio">
-    <label htmlFor="education-radios-4">
-      <input type="radio" name="education-radios" id="education-radios-4" value="5"/>
+    <label htmlFor="edu-4">
+      <input type="radio" name="edu" id="edu-4" value="5"/>
       Bachelor's degree
     </label>
   </div>
   <div className="radio">
-    <label htmlFor="education-radios-5">
-      <input type="radio" name="education-radios" id="education-radios-5" value="6"/>
+    <label htmlFor="edu-5">
+      <input type="radio" name="edu" id="edu-5" value="6"/>
       Master's degree
     </label>
   </div>
   <div className="radio">
-    <label htmlFor="education-radios-6">
-      <input type="radio" name="education-radios" id="education-radios-6" value="7"/>
+    <label htmlFor="edu-6">
+      <input type="radio" name="edu" id="edu-6" value="7"/>
       Professional degree
     </label>
   </div>
   <div className="radio">
-    <label htmlFor="education-radios-7">
-      <input type="radio" name="education-radios" id="education-radios-7" value="8"/>
+    <label htmlFor="edu-7">
+      <input type="radio" name="edu" id="edu-7" value="8"/>
       Doctorate degree
     </label>
   </div>
   </div>
 </div>
 
-            <div className="form-group">
-            <label className="col-md-4 control-label" htmlFor="employement-radios">
+            <div className="form-group" name='job'>
+            <label className="col-md-4 control-label" htmlFor="employment">
             Employment Status
         </label>
             <div className="col-md-4">
             <div className="radio">
-            <label htmlFor="employement-radios-0">
-            <input type="radio" name="employement-radios" id="employement-radios-0" value="1"/>
+            <label htmlFor="employment-0">
+            <input type="radio" name="employment" id="employment-0" value="1" defaultChecked/>
             Employeed
         </label>
             </div>
             <div className="radio">
-            <label htmlFor="employement-radios-1">
-            <input type="radio" name="employement-radios" id="employement-radios-1" value="2"/>
+            <label htmlFor="employment-1">
+            <input type="radio" name="employment" id="employment-1" value="2"/>
             Unemployeed
         </label>
             </div>
             <div className="radio">
-            <label htmlFor="employement-radios-2">
-            <input type="radio" name="employement-radios" id="employement-radios-2" value="3"/>
+            <label htmlFor="employment-2">
+            <input type="radio" name="employment" id="employment-2" value="3"/>
             Student
         </label>
             </div>
             <div className="radio">
-            <label htmlFor="employement-radios-3">
-            <input type="radio" name="employement-radios" id="employement-radios-3" value="4"/>
+            <label htmlFor="employment-3">
+            <input type="radio" name="employment" id="employment-3" value="4"/>
             Retired
         </label>
             </div>
             <div className="radio">
-            <label htmlFor="employement-radios-4">
-            <input type="radio" name="employement-radios" id="employement-radios-4" value="5"/>
+            <label htmlFor="employment-4">
+            <input type="radio" name="employment" id="employment-4" value="5"/>
             Disabled
         </label>
             </div>
@@ -345,7 +364,7 @@ let Register = React.createClass({
             State you currently reside in
         </label>
   <div className="col-md-4">
-    <select id="selectbasic" name="selectbasic" className="form-control">
+    <select id="selectbasic" name="state" className="form-control">
       <option value="1">Alabama</option>
       <option value="2">Alaska</option>
       <option value="3">Arizona</option>
@@ -406,6 +425,9 @@ let Register = React.createClass({
         </form>
 
         <RaisedButton label="Create Account" secondary={true} onClick={this._submitHandler} />
+            <br/>
+            <br/>
+            <br/>
       </div>
     );
   }
@@ -415,6 +437,7 @@ export default connect(mapStateToProps)(Register);
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user,
+    billModalOpen: state.billModalOpen
   };
 }

@@ -41,12 +41,12 @@ export function userLogin(name, pass) {
 }
 // logs out the user currently logged in
 export function userLogout() {
-    db.logout(function (err, response) {
+  db.logout(function (err, response) {
     if (err) {
-    console.log('Network error');
-  }
-  console.log(response); 
-})
+      console.log('Network error');
+    }
+    console.log(response);
+  });
 }
 
 export function getVotes(name, bill) {
