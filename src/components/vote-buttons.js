@@ -5,9 +5,9 @@ import { userLogin } from '../redux/actions';
 import store from '../redux/store';
 import css from '../styles/app';
 import MUI from 'material-ui';
+import VoteGraph from './vote-graph';
 import { connect } from 'react-redux';
-import { submitVote, toggleBillModal,
-  getVotes, demographicVotes, fetchVotes } from '../redux/actions';
+import { submitVote, toggleBillModal, getVotes, fetchVotes } from '../redux/actions';
 
 const { Dialog, TextField, RaisedButton } = MUI;
 
@@ -81,6 +81,31 @@ let VoteButtons = React.createClass({
     //        </Dialog>
     // );
   },
+  
+  fal(){
+	return false;
+  },
+  
+  _getVotes(user, billId) {
+	console.log(getVotes(user, billId));
+      return(<Dialog title="Log in to vote!" ref="billDialog"
+             autoDetectWindowHeight={true} autoScrollBodyContent={true}
+             open={true} onRequestClose={this.fal}>
+               <div>
+				<VoteGraph vote={getVotes(user, billId)} />
+               </div>
+             </Dialog>
+      );
+
+    // return(<Dialog title="Are you sure you want to vote on Bill Title?" ref="billDialog"
+    //        autoDetectWindowHeight={true} autoScrollBodyContent={true}
+    //        open={billModalOpen} onRequestClose={this._toggleBillModal}>
+    //          <div>
+
+    //          </div>
+    //        </Dialog>
+    // );
+  },
 
   componentDidMount() {
     store.dispatch(fetchVotes());
@@ -99,6 +124,7 @@ let VoteButtons = React.createClass({
     for (let i = 0; i < 15; i = i + 1) {
 	console.log(vote[i]);
 	}
+	
     return (
       <div className='VoteButtons'>
             {this.createDialog()}
@@ -107,10 +133,8 @@ let VoteButtons = React.createClass({
           onClick={()=>_submitVote(user, selectedBill._id, 1)} />
         <RaisedButton label="Against" primary={true} style={css.button}
           onClick={()=>_submitVote(user, selectedBill._id, 0)} />
-    <RaisedButton label="See Graph" primary={true} style={css.button}
-          onClick={()=>getVotes(user, selectedBill._id)} />
-    <RaisedButton label="See votes per demographic area" primary={true} style={css.button}
-          onClick={()=>demographicVotes(selectedBill._id)} />
+		<RaisedButton label="See Graph" primary={true} style={css.button}
+          onClick={()=>this._getVotes(user, selectedBill._id) } />
       </div>
     );
   }

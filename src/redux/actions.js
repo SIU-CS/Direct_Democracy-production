@@ -52,12 +52,12 @@ export function userLogout() {
 export function getVotes(name, bill) {
   votesDB.find({
     selector: {billID: bill},
-    fields: ['billID', 'preference']
+    fields: ['billID', 'vote']
   }, function (err, result) {
     if (err) {
       return console.log(err);
     }
-    console.log(result);
+    return result;
     // this is an array of the bills selected
   });
 }

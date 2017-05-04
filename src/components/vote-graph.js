@@ -5,9 +5,9 @@ import rd3 from 'rd3';
 
 
 let VoteGraph = React.createClass({
-    //propTypes: {
-		
-    //},
+    propTypes: {
+	//	vote: React.PropType.array
+    },
 
     render() {
         let PieChart = rd3.PieChart;
@@ -19,18 +19,17 @@ let VoteGraph = React.createClass({
             // {label: "For", value: vote.for}
         ];
         return (
-                <div className="VoteGraph">
-                <PieChart
-            data={pieData}
-            width={400}
-            height={400}
-            radius={100}
-            innerRadius={50}
-            showOuterLabels={true}
-            showInnerLabels={false}
-            sectorBorderColor="white">
-                </PieChart>
-                </div>
+            <div className="VoteGraph">
+              <PieChart
+                data={pieData}
+                width={400}
+                height={400}
+                radius={100}
+                innerRadius={50}
+                showOuterLabels={true}
+                showInnerLabels={false}
+                sectorBorderColor="white" />
+            </div>
         );
     }
 });
