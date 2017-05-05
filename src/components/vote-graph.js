@@ -6,30 +6,29 @@ import rd3 from 'rd3';
 
 let VoteGraph = React.createClass({
     propTypes: {
-	//	vote: React.PropType.array
+        selectedBill: React.PropTypes.object
     },
 
     render() {
-        let PieChart = rd3.PieChart;
-        // let { vote } = this.props;
-        let pieData = [
-            {label: "Against", value: 16},
-            {label: "For", value: 52}
-			// {label: "Against", value: vote.against},
-            // {label: "For", value: vote.for}
+        var PieChart = rd3.PieChart;
+        let { vote } = this.props;
+        var pieData = [
+            {label: "Against", value: vote.against},
+            {label: "For", value: vote.for}
         ];
         return (
-            <div className="VoteGraph">
-              <PieChart
-                data={pieData}
-                width={400}
-                height={400}
-                radius={100}
-                innerRadius={50}
-                showOuterLabels={true}
-                showInnerLabels={false}
-                sectorBorderColor="white" />
-            </div>
+                <div className="VoteGraph">
+                <PieChart
+            data={pieData}
+            width={400}
+            height={400}
+            radius={100}
+            innerRadius={50}
+            showOuterLabels={true}
+            showInnerLabels={false}
+            sectorBorderColor="white">
+                </PieChart>
+                </div>
         );
     }
 });

@@ -5,9 +5,8 @@ import { userLogin } from '../redux/actions';
 import store from '../redux/store';
 import css from '../styles/app';
 import MUI from 'material-ui';
-import VoteGraph from './vote-graph';
 import { connect } from 'react-redux';
-import { submitVote, toggleBillModal, getVotes, fetchVotes } from '../redux/actions';
+import { submitVote, toggleBillModal, getVotes, demographicVotes } from '../redux/actions';
 
 const { Dialog, TextField, RaisedButton } = MUI;
 
@@ -15,7 +14,6 @@ let VoteButtons = React.createClass({
   propTypes: {
     selectedBill: React.PropTypes.object,
     user: React.PropTypes.object,
-    vote: React.PropTypes.array,
     billModalOpen: React.PropTypes.oneOfType([
       React.PropTypes.func,
       React.PropTypes.bool
@@ -53,7 +51,6 @@ let VoteButtons = React.createClass({
 
   createDialog() {
     let { user, billModalOpen } = this.props;
-
     if (user.name.localeCompare('none') === 0) {
       return(<Dialog title="Log in to vote!" ref="billDialog"
              autoDetectWindowHeight={true} autoScrollBodyContent={true}
@@ -68,6 +65,7 @@ let VoteButtons = React.createClass({
                             onEnterKeyDown={this._submitHandler} />
 
                  <RaisedButton label="Log In" secondary={true} onClick={this._submitHandler} />
+				 
                </div>
              </Dialog>
       );
@@ -81,39 +79,10 @@ let VoteButtons = React.createClass({
     //        </Dialog>
     // );
   },
-  
-  fal(){
-	return false;
-  },
-  
-  _getVotes(user, billId) {
-	console.log(getVotes(user, billId));
-      return(<Dialog title="Log in to vote!" ref="billDialog"
-             autoDetectWindowHeight={true} autoScrollBodyContent={true}
-             open={true} onRequestClose={this.fal}>
-               <div>
-				<VoteGraph vote={getVotes(user, billId)} />
-               </div>
-             </Dialog>
-      );
-
-    // return(<Dialog title="Are you sure you want to vote on Bill Title?" ref="billDialog"
-    //        autoDetectWindowHeight={true} autoScrollBodyContent={true}
-    //        open={billModalOpen} onRequestClose={this._toggleBillModal}>
-    //          <div>
-
-    //          </div>
-    //        </Dialog>
-    // );
-  },
-
-  componentDidMount() {
-    store.dispatch(fetchVotes());
-  },
 
 
   render() {
-    let { selectedBill, user, vote } = this.props;
+    let { selectedBill, user } = this.props;
 
     if (selectedBill.title.localeCompare('none') === 0) {
       return (<div className='Bill'>
@@ -121,10 +90,6 @@ let VoteButtons = React.createClass({
               </div>
       );
     }
-    for (let i = 0; i < 15; i = i + 1) {
-	console.log(vote[i]);
-	}
-	
     return (
       <div className='VoteButtons'>
             {this.createDialog()}
@@ -134,7 +99,9 @@ let VoteButtons = React.createClass({
         <RaisedButton label="Against" primary={true} style={css.button}
           onClick={()=>_submitVote(user, selectedBill._id, 0)} />
 		<RaisedButton label="See Graph" primary={true} style={css.button}
-          onClick={()=>this._getVotes(user, selectedBill._id) } />
+          onClick={()=>getVotes(user, selectedBill._id)} />
+		<RaisedButton label="See votes per demographic area" primary={true} style={css.button}
+          onClick={()=>demographicVotes(selectedBill._id)} />
       </div>
     );
   }
@@ -146,7 +113,6 @@ function mapStateToProps(state) {
   return {
     selectedBill: state.selectedBill,
     user: state.user,
-	vote: state.vote,
     billModalOpen: state.billModalOpen
   };
 }

@@ -52,18 +52,18 @@ export function userLogout() {
 export function getVotes(name, bill) {
   votesDB.find({
     selector: {billID: bill},
-    fields: ['billID', 'vote']
+    fields: ['billID', 'preference']
   }, function (err, result) {
     if (err) {
       return console.log(err);
     }
-    return result;
+    console.log(result);
     // this is an array of the bills selected
   });
 }
 
-export function getUsersVotes(user) {
-  votesDB.find({
+export function getUsersVotes(user){
+	votesDB.find({
     selector: {userID: user}
   }, function (err, result) {
     if (err) {
@@ -109,9 +109,9 @@ export function toggleBillModal() {
   };
 }
 
-export function demographicVotes(bill) {
-  votesDB.find({
-    selector: {billID: bill},
+export function demographicVotes(bill){
+	votesDB.find({
+    selector: {billID : bill},
     fields: ['vote', 'userID']
   }, function (err, result) {
     if (err) {
@@ -135,20 +135,6 @@ export function fetchBills() {
     throw err;
   });
 }
-
-export function fetchVotes() {
-  return votesDB.allDocs({
-    include_docs: true // eslint-disable-line camelcase
-  }).then(vote => {
-    return {
-      type: 'FETCH_VOTES',
-      vote: mapDocsFromPouch(vote)
-    };
-  }).catch(err => {
-    throw err;
-  });
-}
-
 
 export function acquireUserInfo(user) {
   db.getUser(user, function (err, response) {
@@ -186,19 +172,19 @@ export function selectBill(selectedBill) {
     selectedBill
   };
 }
-export function registerUser(name, pass, uGender, uRace,
+export function registerUser(name, pass, uGender, uRace, 
 uAge, uMoney, uMarriage, uEdu, uEmployment, uState) {
-  db.signup(name, pass, {metadata: {
-    gender: uGender,
-    race: uRace,
-    age: uAge,
-    money: uMoney,
-    marriage: uMarriage,
-    edu: uEdu,
-    employment: uEmployment,
-    state: uState
-  }
-  }, function (err, response) {
+  db.signup(name, pass, {metadata : {
+    gender : uGender,
+    race : uRace,
+    age : uAge,
+	money : uMoney,
+	marriage : uMarriage,
+	edu : uEdu,
+	employment : uEmployment,
+	state : uState
+	}
+  },function (err, response) {
     if (err) {
       if (err.name === 'conflict') {
         console.log('conflict');

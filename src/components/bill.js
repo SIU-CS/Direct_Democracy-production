@@ -10,12 +10,11 @@ import { connect } from 'react-redux';
 let Bill = React.createClass({
   propTypes: {
     selectedBill: React.PropTypes.object,
-	vote: React.PropTypes.array,
-    user: React.PropTypes.object
+    user: React.PropTypes.string
   },
 
   render() {
-    let { selectedBill, user, vote } = this.props;
+    let { selectedBill, user } = this.props;
 
     if (selectedBill.title.localeCompare('none') === 0) {
       return (<div className='Bill'>
@@ -31,10 +30,10 @@ let Bill = React.createClass({
           {selectedBill.title}
         </h3>
         <p>
-          {selectedBill.text}
+          {selectedBill.billText}
         </p>
 
-        <VoteButtons user={user} selectedBill={selectedBill} vote={vote}/>
+        <VoteButtons user={user} selectedBill={selectedBill} />
      </div>
     );
 
@@ -59,7 +58,6 @@ export default connect(mapStateToProps)(Bill);
 function mapStateToProps(state) {
   return {
     selectedBill: state.selectedBill,
-    user: state.user,
-	vote: state.vote
+    user: state.user
   };
 }
