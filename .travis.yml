@@ -6,3 +6,4 @@ install:
   - npm install redux-react-router
   - npm install pouchdb-memory
   - npm install chai
+  - npm install chai-as-promised
