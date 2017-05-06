@@ -5,3 +5,4 @@ install:
   - npm install
   - npm install redux-react-router
   - npm install pouchdb-memory
+  - npm install chai
