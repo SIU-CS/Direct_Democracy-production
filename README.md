@@ -18,9 +18,11 @@ How to Direct Democracy
 
 * Git clone our project.
 * Checkout branch staging.
+
 Then the steps are basic for node projects.
 
 npm install
+ 
 npm start
 
 Open a browser and navigate to localhost:8080. Enjoy.
