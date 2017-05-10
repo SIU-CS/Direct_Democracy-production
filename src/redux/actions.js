@@ -62,8 +62,8 @@ export function getVotes(name, bill) {
   });
 }
 
-export function getUsersVotes(user){
-	votesDB.find({
+export function getUsersVotes(user) {
+  votesDB.find({
     selector: {userID: user}
   }, function (err, result) {
     if (err) {
@@ -109,9 +109,9 @@ export function toggleBillModal() {
   };
 }
 
-export function demographicVotes(bill){
-	votesDB.find({
-    selector: {billID : bill},
+export function demographicVotes(bill) {
+  votesDB.find({
+    selector: {billID: bill},
     fields: ['vote', 'userID']
   }, function (err, result) {
     if (err) {
@@ -172,19 +172,19 @@ export function selectBill(selectedBill) {
     selectedBill
   };
 }
-export function registerUser(name, pass, uGender, uRace, 
+export function registerUser(name, pass, uGender, uRace,
 uAge, uMoney, uMarriage, uEdu, uEmployment, uState) {
-  db.signup(name, pass, {metadata : {
-    gender : uGender,
-    race : uRace,
-    age : uAge,
-	money : uMoney,
-	marriage : uMarriage,
-	edu : uEdu,
-	employment : uEmployment,
-	state : uState
-	}
-  },function (err, response) {
+  db.signup(name, pass, {metadata: {
+    gender: uGender,
+    race: uRace,
+    age: uAge,
+    money: uMoney,
+    marriage: uMarriage,
+    edu: uEdu,
+    employment: uEmployment,
+    state: uState
+  }
+  }, function (err, response) {
     if (err) {
       if (err.name === 'conflict') {
         console.log('conflict');
