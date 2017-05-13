@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "7"
+install:
+  - npm install
+  - npm install redux-react-router
+  - npm install pouchdb-memory
+  - npm install chai
+  - npm install chai-as-promised
+  - npm install react
+  - npm install react-dom
+  - npm install rd3
+  - npm install material-ui
+  - npm install react-redux

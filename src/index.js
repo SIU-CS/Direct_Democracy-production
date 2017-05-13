@@ -1,9 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+'use strict';
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+import { Provider } from 'react-redux';
+import Router from './components/router';
+import React from 'react';
+import { render } from 'react-dom';
+import store from './redux/store';
+
+render(
+  <Provider store={store}>
+    <Router />
+  </Provider>
+  , document.getElementById('app')
 );
