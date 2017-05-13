@@ -21,7 +21,6 @@ See common errors for installation of couchdb(CORS enablization and version 2)
 ## Quick Install
 ```
 git clone https://github.com/SIU-CS/Direct_Democracy-production.git
-git checkout staging
 npm install
 npm start
 ```
