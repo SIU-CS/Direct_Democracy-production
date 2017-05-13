@@ -60,6 +60,7 @@
   },
   "dependencies": {
     "pouchdb-authentication": "^0.5.5",
-    "pouchdb-find": "^6.2.0"
+    "pouchdb-find": "^6.2.0",
+    "react-router-redux": "^4.0.8"
   }
 }
