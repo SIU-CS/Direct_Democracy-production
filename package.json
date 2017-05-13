@@ -59,6 +59,9 @@
     "webpack-dev-server": "^1.12.0"
   },
   "dependencies": {
+    "cheerio": "^0.22.0",
+    "nano": "^6.2.0",
+    "pouchdb": "^5.4.5",
     "pouchdb-authentication": "^0.5.5",
     "pouchdb-find": "^6.2.0",
     "react-router-redux": "^4.0.8"
